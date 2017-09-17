@@ -15,12 +15,19 @@ const NumberContainer = styled.div`
   width: 200px;
 `
 
-const generateNumber = (number) => {
+const generateNumber = number => {
   const height = 7
   const width = 3
   return new Array(height * width)
-    .fill(<Pixel color={'#292929'} />)
-    .map((tag, index) => (number[index] ? <Pixel color={'white'} /> : tag))
+    .fill(<div />)
+    .map(
+      (tag, index) =>
+        (number[index] ? (
+          <Pixel color={'#ffffff'} key={ index } />
+        ) : (
+          <Pixel color={'#292929'} key={ index } />
+        )),
+    )
 }
 
 export const Number = ({ display: number }) => (

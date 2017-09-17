@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import styled, { injectGlobal } from 'styled-components'
+import * as React from 'react'
+import { injectGlobal } from 'styled-components'
 import { Index } from './components/Index'
 
 injectGlobal`
