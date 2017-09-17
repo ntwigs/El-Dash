@@ -58,27 +58,30 @@ const enhance = compose(
     const hourTwo = new Date().getHours().toString()[1]
     return getNumberAsText({ number: hourTwo })
   }),
-  withHandlers({
-    onChange: ({ setTime }) => () => {
-      setTime(new Date().getHours)
-    },
+  withState('firstMinute', 'setFirstMinute', props => {
+    const minuteOne = new Date().getMinutes().toString()[0]
+    return getNumberAsText({ number: minuteOne })
+  }),
+  withState('secondMinute', 'setSecondMinute', props => {
+    const minuteTwo = new Date().getMinutes().toString()[1]
+    return getNumberAsText({ number: minuteTwo })
   }),
   lifecycle({
     componenDidMount() {
       setInterval(() => {
-        this.props.setFirstHour(new Date().getHours())
-        this.props.setSecondHour(new Date().getHours())
-        this.props.setFirstMinute(new Date().getMinutes())
-        this.props.setSecondMinute(new Date().getMinutes())
+        this.props.setFirstHour()
+        this.props.setSecondHour()
+        this.props.setFirstMinute()
+        this.props.setSecondMinute()
       }, 1000)
     },
   }),
 )
-export const Clock = enhance(({ firstHour, secondHour }) => (
+export const Clock = enhance(({ firstHour, secondHour, firstMinute, secondMinute }) => (
   <NumberContainer>
     <Number display={display[firstHour]} />
     <Number display={display[secondHour]} />
-    <Number display={display.one} />
-    <Number display={display.six} />
+    <Number display={display[firstMinute]} />
+    <Number display={display[secondMinute]} />
   </NumberContainer>
 ))
