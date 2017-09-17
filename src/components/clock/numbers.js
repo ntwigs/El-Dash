@@ -100,6 +100,9 @@ export const nine = [
 
 export const getNumberAsText = ({ number }) => {
   switch (number) {
+    case undefined: {
+      return 'zero'
+    }
     case '0': {
       return 'zero'
     }
@@ -130,7 +133,8 @@ export const getNumberAsText = ({ number }) => {
     case '9': {
       return 'nine'
     }
-    default:
-      throw new Error('Something went terribly wrong')
+    default: {
+      throw new Error('That is not a number')
+    }
   }
 }

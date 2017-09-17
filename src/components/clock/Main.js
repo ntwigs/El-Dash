@@ -18,7 +18,7 @@ const getHours = ({ index }) => {
 }
 
 const getMinutes = ({ index }) => {
-  const timeNumber = new Date().getMinutes().toString()[index]
+  const timeNumber = new Date().getSeconds().toString()[index]
   return display.getNumberAsText({ number: timeNumber })
 }
 
@@ -34,7 +34,7 @@ const enhance = compose(
         this.props.setSecondHour(getHours({ index: 1 }))
         this.props.setFirstMinute(getMinutes({ index: 0 }))
         this.props.setSecondMinute(getMinutes({ index: 1 }))
-      }, 1000)
+      }, 5000)
     },
   }),
 )
