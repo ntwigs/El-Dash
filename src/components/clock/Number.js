@@ -31,8 +31,8 @@ const generateNumber = number => {
     .fill(<div />)
     .map((tag, index) => (
       <PixelFadeIn
-        to={number[index] ? '#c3c3c3' : '#292929'}
-        from={number[index] ? '#292929' : '#c3c3c3'}
+        to={number[index] ? '#c3c3c3' : '#282828'}
+        from={number[index] ? '#282828' : '#c3c3c3'}
         key={index}
         time={0.03 * index}
       />
