@@ -51,12 +51,12 @@ const getNumberAsText = ({ number }) => {
 
 const enhance = compose(
   withState('firstHour', 'setFirstHour', props => {
-    const d = new Date().getHours().toString()[0]
-    return getNumberAsText({ number: d })
+    const hourOne = new Date().getHours().toString()[0]
+    return getNumberAsText({ number: hourOne })
   }),
   withState('secondHour', 'setSecondHour', props => {
-    const d = new Date().getHours().toString()[1]
-    return getNumberAsText({ number: d })
+    const hourTwo = new Date().getHours().toString()[1]
+    return getNumberAsText({ number: hourTwo })
   }),
   withHandlers({
     onChange: ({ setTime }) => () => {
@@ -68,6 +68,8 @@ const enhance = compose(
       setInterval(() => {
         this.props.setFirstHour(new Date().getHours())
         this.props.setSecondHour(new Date().getHours())
+        this.props.setFirstMinute(new Date().getMinutes())
+        this.props.setSecondMinute(new Date().getMinutes())
       }, 1000)
     },
   }),
