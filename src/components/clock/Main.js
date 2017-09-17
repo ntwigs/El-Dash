@@ -12,16 +12,23 @@ const NumberContainer = styled.div`
   align-items: center;
 `
 
+const addZero = value => `0${value}`
+const extractValue = value => value.slice(-2)
+const correctNumbers = compose(
+  extractValue,
+  addZero,
+)
+
 const getHours = ({ index }) => {
-  const timeNumber = `0${new Date().getHours().toString()}`
-  const extractedNumber = timeNumber.slice(-2)[index]
-  return display.getNumberAsText({ number: extractedNumber })
+  const date = new Date().getHours().toString()
+  const getCorrectNumbers = correctNumbers(date)[index]
+  return display.getNumberAsText({ number: getCorrectNumbers })
 }
 
 const getMinutes = ({ index }) => {
-  const timeNumber = `0${new Date().getMinutes().toString()}`
-  const extractedNumber = timeNumber.slice(-2)[index]
-  return display.getNumberAsText({ number: extractedNumber })
+  const date = new Date().getMinutes().toString()
+  const getCorrectNumbers = correctNumbers(date)[index]
+  return display.getNumberAsText({ number: getCorrectNumbers })
 }
 
 const enhance = compose(
@@ -36,7 +43,7 @@ const enhance = compose(
         this.props.setSecondHour(getHours({ index: 1 }))
         this.props.setFirstMinute(getMinutes({ index: 0 }))
         this.props.setSecondMinute(getMinutes({ index: 1 }))
-      }, 5000)
+      }, 1000)
     },
   }),
 )
