@@ -98,6 +98,17 @@ export const nine = [
   false, false, true,
 ]
 
+export const colon = [
+  false, false, false,
+  false, false, false,
+  false, true, false,
+  false, false, false,
+  false, true, false,
+  false, false, false,
+  false, false, false,
+]
+
+
 export const getNumberAsText = ({ number }) => {
   switch (number) {
     case undefined: {
