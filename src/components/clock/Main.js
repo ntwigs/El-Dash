@@ -13,13 +13,15 @@ const NumberContainer = styled.div`
 `
 
 const getHours = ({ index }) => {
-  const timeNumber = new Date().getHours().toString()[index]
-  return display.getNumberAsText({ number: timeNumber })
+  const timeNumber = `0${new Date().getHours().toString()}`
+  const extractedNumber = timeNumber.slice(-2)[index]
+  return display.getNumberAsText({ number: extractedNumber })
 }
 
 const getMinutes = ({ index }) => {
-  const timeNumber = new Date().getSeconds().toString()[index]
-  return display.getNumberAsText({ number: timeNumber })
+  const timeNumber = `0${new Date().getMinutes().toString()}`
+  const extractedNumber = timeNumber.slice(-2)[index]
+  return display.getNumberAsText({ number: extractedNumber })
 }
 
 const enhance = compose(
@@ -44,6 +46,7 @@ export const Clock = enhance(
     <NumberContainer>
       <Number display={display[firstHour]} />
       <Number display={display[secondHour]} />
+      <Number display={display.colon} />
       <Number display={display[firstMinute]} />
       <Number display={display[secondMinute]} />
     </NumberContainer>
