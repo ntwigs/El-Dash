@@ -48,7 +48,15 @@ export const four = [
   false, false, true,
 ]
 
-export const five = two.reverse()
+export const five = [
+  true, true, true,
+  true, false, false,
+  true, false, false,
+  true, true, true,
+  false, false, true,
+  false, false, true,
+  true, true, true,
+]
 
 export const six = [
   true, false, false,

@@ -30,19 +30,11 @@ const enhance = compose(
   lifecycle({
     componentDidMount() {
       setInterval(() => {
-        this.props.setFirstHour(
-          getHours({ index: 0 }),
-        )
-        this.props.setSecondHour(
-          getHours({ index: 1 }),
-        )
-        this.props.setFirstMinute(
-          getMinutes({ index: 0 }),
-        )
-        this.props.setSecondMinute(
-          getMinutes({ index: 1 }),
-        )
-      }, 5000)
+        this.props.setFirstHour(getHours({ index: 0 }))
+        this.props.setSecondHour(getHours({ index: 1 }))
+        this.props.setFirstMinute(getMinutes({ index: 0 }))
+        this.props.setSecondMinute(getMinutes({ index: 1 }))
+      }, 1000)
     },
   }),
 )
