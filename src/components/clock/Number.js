@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { compose, lifecycle } from 'recompose'
 import styled, { keyframes } from 'styled-components'
 
 const fadeIn = (from, to) => keyframes`
@@ -19,16 +18,10 @@ const PixelFadeIn = styled.div`
   animation-delay: ${({ time }) => time}s;
 `
 
-const Pixel = styled.div`
-  width: 50px;
-  height: 50px;
-  margin: 2px;
-`
-
 const NumberContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 200px;
+  width: 210px;
 `
 
 const generateNumber = number => {
@@ -41,7 +34,7 @@ const generateNumber = number => {
         to={number[index] ? '#c3c3c3' : '#292929'}
         from={number[index] ? '#292929' : '#c3c3c3'}
         key={index}
-        time={0.05 * index}
+        time={0.03 * index}
       />
     ))
 }
