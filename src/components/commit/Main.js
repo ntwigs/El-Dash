@@ -8,28 +8,32 @@ const Container = styled.div`
 `
 
 const getCommits = async () => {
-  const userData = await fetch(`https://api.github.com/users/NorthernTwig/events`, {
+  const userData = await fetch('https://api.github.com/users/NorthernTwig/events', {
     Authorization: `token ${ process.env.REACT_APP_GITHUB_API_KEY }`,
   })
-
   const userDataJson = await userData.json()
-
   const today = new Date().getDate()
   return userDataJson
     .filter(
       ({ created_at, payload }) => today === new Date(created_at).getDate() && 'commits' in payload,
     )
     .map(({ payload }) => payload.commits.length)
-
-  return <p>{test}</p>
 }
 
-const enhance = compose(
-  withState('commits', 'setCommits', async () => getCommits()),
+const Commits = props => (
+  <h1>{ props.commits }</h1>
 )
+
+const WithExists = Component => props => (
+  !props.commits ? <Component { ...props } /> : <h1>I AM LOADING BRE</h1>
+)
+
+const CommitsWithExists = WithExists(Commits)
+
+const enhance = compose(withState('commits', 'setCommits', getCommits()))
 
 export const Commit = enhance(({ commits }) => (
   <Container>
-    {commits}
+    <CommitsWithExists commits={ commits } />
   </Container>
 ))
