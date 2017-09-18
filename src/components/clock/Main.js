@@ -6,10 +6,6 @@ import * as display from '../../utils/numbers'
 
 const NumberContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
 `
 
 const addZero = value => `0${value}`
@@ -26,7 +22,7 @@ const getHours = ({ index }) => {
 }
 
 const getMinutes = ({ index }) => {
-  const date = new Date().getMinutes().toString()
+  const date = new Date().getSeconds().toString()
   const getCorrectNumbers = correctNumbers(date)[index]
   return display.getNumberAsText({ number: getCorrectNumbers })
 }
@@ -43,7 +39,7 @@ const enhance = compose(
         this.props.setSecondHour(getHours({ index: 1 }))
         this.props.setFirstMinute(getMinutes({ index: 0 }))
         this.props.setSecondMinute(getMinutes({ index: 1 }))
-      }, 1000)
+      }, 2000)
     },
   }),
 )
