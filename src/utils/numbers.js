@@ -111,9 +111,6 @@ export const colon = [
 
 export const getNumberAsText = ({ number }) => {
   switch (number) {
-    case undefined: {
-      return 'zero'
-    }
     case '0': {
       return 'zero'
     }
