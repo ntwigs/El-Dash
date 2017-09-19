@@ -1,11 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { compose, withState } from 'recompose'
+import { compose, withState, lifecycle } from 'recompose'
 
 const Container = styled.div`
   width: 50%;
   background-color: red;
 `
+
+const Commits = props => <h1>{props.commits}</h1>
 
 const getCommits = async () => {
   const userData = await fetch('https://api.github.com/users/NorthernTwig/events', {
@@ -13,27 +15,28 @@ const getCommits = async () => {
   })
   const userDataJson = await userData.json()
   const today = new Date().getDate()
-  return userDataJson
+  const commits = userDataJson
     .filter(
       ({ created_at, payload }) => today === new Date(created_at).getDate() && 'commits' in payload,
     )
     .map(({ payload }) => payload.commits.length)
+
+  return commits.length > 0 ? commits[0] : 0
 }
 
-const Commits = props => (
-  <h1>{ props.commits }</h1>
+const enhance = compose(
+  withState('commits', 'setCommits', 0),
+  lifecycle({
+    componentDidMount() {
+      setInterval(async () => {
+        this.props.setCommits(await getCommits())
+      }, 10000)
+    },
+  }),
 )
-
-const WithExists = Component => props => (
-  !props.commits ? <Component { ...props } /> : <h1>I AM LOADING BRE</h1>
-)
-
-const CommitsWithExists = WithExists(Commits)
-
-const enhance = compose(withState('commits', 'setCommits', getCommits()))
 
 export const Commit = enhance(({ commits }) => (
   <Container>
-    <CommitsWithExists commits={ commits } />
+    <Commits commits={ commits } />
   </Container>
 ))
