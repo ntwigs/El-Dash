@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { compose, withState, lifecycle } from 'recompose'
 import { Number } from '../common/Number'
 import * as display from '../../utils/numbers'
+import { getCommits } from '../../http/commits'
 
 const NumberContainer = styled.div`
   display: flex;
@@ -25,23 +26,6 @@ const getMinutes = ({ index }) => {
   const date = new Date().getMinutes().toString()
   const getCorrectNumbers = correctNumbers(date)[index]
   return display.getNumberAsText({ number: getCorrectNumbers })
-}
-
-const getCommits = async () => {
-  const userData = await fetch('https://api.github.com/users/NorthernTwig/events', {
-    headers: {
-      Authorization: `token ${ process.env.REACT_APP_GITHUB_API_KEY }`,
-      'User-Agent': 'NorthernTwig',
-    },
-  })
-  const userDataJson = await userData.json()
-  const today = new Date().getDate()
-  return userDataJson
-    .filter(
-      ({ created_at, payload }) => today === new Date(created_at).getDate() && 'commits' in payload,
-    )
-    .map(({ payload }) => payload.commits.length)
-    .reduce((acc, val) => acc + val, 0)
 }
 
 const enhance = compose(
