@@ -50,14 +50,12 @@ const enhance = compose(
   withState('firstMinute', 'setFirstMinute', () => getMinutes({ index: 0 })),
   withState('secondMinute', 'setSecondMinute', () => getMinutes({ index: 1 })),
   withState('commits', 'setCommits', 0),
-  withState('displayCommits', 'setDisplayCommits', false),
   lifecycle({
     async componentDidMount() {
       this.props.setCommits(await getCommits())
       setInterval(async () => {
         this.props.setCommits(await getCommits())
-        this.props.setDisplayCommits(!this.props.displayCommits)
-      }, 5000)
+      }, 10000)
 
       setInterval(() => {
         this.props.setFirstHour(getHours({ index: 0 }))

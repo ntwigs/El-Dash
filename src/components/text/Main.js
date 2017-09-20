@@ -5,9 +5,10 @@ import * as display from '../../utils/letters'
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: scale(0.5);
+  justify-content: flex-end;
+  align-content: flex-end;
+  height: 200px;
+  zoom: 50%;
 `
 
 const getText = ({ displayCommits, displayTime }) => (
