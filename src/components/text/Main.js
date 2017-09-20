@@ -12,13 +12,13 @@ const Container = styled.div`
 
 const getText = ({ displayCommits, displayTime }) => (
   <Container>
-    <Number display={ displayCommits ? display.c : display.a } />
-    <Number display={ displayCommits ? display.o : display.a } />
-    <Number display={ displayCommits ? display.m : display.a } />
-    <Number display={ displayCommits ? display.m : display.a } />
-    <Number display={ displayCommits ? display.i : display.a } />
-    <Number display={ displayCommits ? display.t : display.a } />
-    <Number display={ displayCommits ? display.s : display.a } />
+    <Number display={ displayCommits ? display.c : display.empty } />
+    <Number display={ displayCommits ? display.o : display.empty } />
+    <Number display={ displayCommits ? display.m : display.empty } />
+    <Number display={ displayCommits ? display.m : display.t } />
+    <Number display={ displayCommits ? display.i : display.i } />
+    <Number display={ displayCommits ? display.t : display.m } />
+    <Number display={ displayCommits ? display.s : display.e } />
   </Container>
 )
 
