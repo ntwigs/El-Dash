@@ -4,7 +4,12 @@ import { compose, withState, lifecycle } from 'recompose'
 import { Number } from './Number'
 import * as display from '../../utils/numbers'
 
-const NumberContainer = styled.div`display: flex;`
+const NumberContainer = styled.div`
+  display: flex;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`
 
 const addZero = value => `0${ value }`
 const extractValue = value => value.slice(-2)
@@ -65,12 +70,19 @@ const enhance = compose(
 )
 
 const getValue = ({ index, commits }) => {
-  const reversedCommits = commits.toString().split('').reverse().join('')
+  const reversedCommits = commits
+    .toString()
+    .split('')
+    .reverse()
+    .join('')
   const number = reversedCommits.toString()[index] || '0'
   const numberAsText = display.getNumberAsText({ number })
   return display[numberAsText]
 }
 
+/*
+Lösgör alla numbers (function för att kunna loopa fram dem.)
+*/
 export const Clock = enhance(
   ({ firstHour, secondHour, firstMinute, secondMinute, displayCommits, commits }) => (
     <NumberContainer>
