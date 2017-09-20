@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import { compose, withState, lifecycle } from 'recompose'
 import { Clock } from './clock/Main'
 import { Text } from './text/Main'
@@ -17,9 +18,13 @@ const enhance = compose(
   }),
 )
 
+const Container = styled.div`
+  width: 1644px;
+`
+
 export const BigContainer = enhance(props => (
-  <div>
+  <Container>
     <Text { ...props } />
-    <Clock />
-  </div>
+    <Clock { ...props } />
+  </Container>
 ))
