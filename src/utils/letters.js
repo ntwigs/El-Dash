@@ -1,3 +1,13 @@
+export const empty = [
+  false, false, false,
+  false, false, false,
+  false, false, false,
+  false, false, false,
+  false, false, false,
+  false, false, false,
+  false, false, false,
+]
+
 export const a = [
   true, true, true,
   true, false, true,
@@ -66,4 +76,14 @@ export const s = [
   false, false, true,
   true, false, true,
   false, true, false,
+]
+
+export const e = [
+  true, true, true,
+  true, false, false,
+  true, false, false,
+  true, true, false,
+  true, false, false,
+  true, false, false,
+  true, true, true,
 ]
