@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { foreground, background } from '../../utils/colors'
-import { margin, size, width } from './clockConfig'
+import { margin, size, width, height } from './clockConfig'
 
 const fadeIn = (from, to) => keyframes`
   0% { transform: scale(1); opacity: 1; background-color: ${ from };}
@@ -29,9 +29,8 @@ const NumberContainer = styled.div`
   min-width: ${ size * width + size + margin * 4 }px;
 `
 
-const generateNumber = number => {
-  const height = 7
-  return new Array(height * width)
+const generateNumber = number =>
+  new Array(height * width)
     .fill(<div />)
     .map((tag, index) => (
       <PixelFadeIn
@@ -41,7 +40,6 @@ const generateNumber = number => {
         time={ 0.03 * index }
       />
     ))
-}
 
 export const Number = ({ display: number }) => (
   <NumberContainer>{generateNumber(number)}</NumberContainer>

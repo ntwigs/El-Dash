@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Number } from './Number'
+import { Number } from '../common/Number'
 import * as display from '../../utils/letters'
 
 const Container = styled.div`

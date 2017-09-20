@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { compose, withState, lifecycle } from 'recompose'
-import { Number } from './Number'
+import { Number } from '../common/Number'
 import * as display from '../../utils/numbers'
 
 const NumberContainer = styled.div`
