@@ -28,6 +28,17 @@ const getMinutes = ({ index }) => {
   return display.getNumberAsText({ number: getCorrectNumbers })
 }
 
+const getValue = ({ index, commits }) => {
+  const reversedCommits = commits
+    .toString()
+    .split('')
+    .reverse()
+    .join('')
+  const number = reversedCommits.toString()[index] || '0'
+  const numberAsText = display.getNumberAsText({ number })
+  return display[numberAsText]
+}
+
 const enhance = compose(
   withState('firstHour', 'setFirstHour', () => getHours({ index: 0 })),
   withState('secondHour', 'setSecondHour', () => getHours({ index: 1 })),
@@ -51,20 +62,6 @@ const enhance = compose(
   }),
 )
 
-const getValue = ({ index, commits }) => {
-  const reversedCommits = commits
-    .toString()
-    .split('')
-    .reverse()
-    .join('')
-  const number = reversedCommits.toString()[index] || '0'
-  const numberAsText = display.getNumberAsText({ number })
-  return display[numberAsText]
-}
-
-/*
-Lösgör alla numbers (function för att kunna loopa fram dem.)
-*/
 export const Clock = enhance(
   ({ firstHour, secondHour, firstMinute, secondMinute, displayCommits, commits }) => (
     <NumberContainer>
