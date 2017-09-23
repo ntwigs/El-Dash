@@ -11,15 +11,15 @@ const Container = styled.div`
   zoom: 50%;
 `
 
-const getText = ({ displayCommits, displayTime }) => (
+const getText = () => (
   <Container>
-    <Number display={ displayCommits ? display.c : display.empty } />
-    <Number display={ displayCommits ? display.o : display.empty } />
-    <Number display={ displayCommits ? display.m : display.empty } />
-    <Number display={ displayCommits ? display.m : display.t } />
-    <Number display={ displayCommits ? display.i : display.i } />
-    <Number display={ displayCommits ? display.t : display.m } />
-    <Number display={ displayCommits ? display.s : display.e } />
+    <Number display={ display.c } />
+    <Number display={ display.o } />
+    <Number display={ display.m } />
+    <Number display={ display.m } />
+    <Number display={ display.i } />
+    <Number display={ display.t } />
+    <Number display={ display.s } />
   </Container>
 )
 
