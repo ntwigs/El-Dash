@@ -17,7 +17,7 @@ const PixelFadeIn = styled.div`
   height: ${ size }px;
   border-radius: 1px;
   margin: ${ margin }px;
-  animation: ${ ({ from, to }) => fadeIn(from, to) } 1s both;
+  animation: ${ ({ from, to }) => fadeIn(from, to) } 0.35s both;
   animation-delay: ${ ({ time }) => time }s;
 `
 
@@ -37,7 +37,7 @@ const generateNumber = number =>
         to={ number[index] ? foreground : background }
         from={ number[index] ? background : foreground }
         key={ index }
-        time={ 0.03 * index }
+        time={ 0.003 * index }
       />
     ))
 
