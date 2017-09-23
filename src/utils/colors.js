@@ -1,2 +1,2 @@
-export const foreground = '#7bcdff'
-export const background = '#303942'
+export const foreground = '#253e4a'
+export const background = '#070707'
