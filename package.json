@@ -5,10 +5,12 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "dotenv": "^4.0.0",
+    "global": "^4.3.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "recompose": "^0.25.0",
     "request": "^2.81.0",
+    "serve": "^6.1.0",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
