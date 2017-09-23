@@ -12,22 +12,6 @@ const NumberContainer = styled.div`
   justify-content: center;
 `
 
-const addZero = value => `0${ value }`
-const extractValue = value => value.slice(-2)
-const correctNumbers = compose(extractValue, addZero)
-
-const getHours = ({ index }) => {
-  const date = new Date().getHours().toString()
-  const getCorrectNumbers = correctNumbers(date)[index]
-  return display.getNumberAsText({ number: getCorrectNumbers })
-}
-
-const getMinutes = ({ index }) => {
-  const date = new Date().getMinutes().toString()
-  const getCorrectNumbers = correctNumbers(date)[index]
-  return display.getNumberAsText({ number: getCorrectNumbers })
-}
-
 const getValue = ({ index, commits }) => {
   const reversedCommits = commits
     .toString()
@@ -40,10 +24,6 @@ const getValue = ({ index, commits }) => {
 }
 
 const enhance = compose(
-  withState('firstHour', 'setFirstHour', () => getHours({ index: 0 })),
-  withState('secondHour', 'setSecondHour', () => getHours({ index: 1 })),
-  withState('firstMinute', 'setFirstMinute', () => getMinutes({ index: 0 })),
-  withState('secondMinute', 'setSecondMinute', () => getMinutes({ index: 1 })),
   withState('commits', 'setCommits', 0),
   lifecycle({
     async componentDidMount() {
@@ -51,25 +31,16 @@ const enhance = compose(
       setInterval(async () => {
         this.props.setCommits(await getCommits())
       }, 10000)
-
-      setInterval(() => {
-        this.props.setFirstHour(getHours({ index: 0 }))
-        this.props.setSecondHour(getHours({ index: 1 }))
-        this.props.setFirstMinute(getMinutes({ index: 0 }))
-        this.props.setSecondMinute(getMinutes({ index: 1 }))
-      }, 2000)
     },
   }),
 )
 
-export const Clock = enhance(
-  ({ firstHour, secondHour, firstMinute, secondMinute, displayCommits, commits }) => (
-    <NumberContainer>
-      <Number display={ displayCommits ? getValue({ index: 4, commits }) : display[firstHour] } />
-      <Number display={ displayCommits ? getValue({ index: 3, commits }) : display[secondHour] } />
-      <Number display={ displayCommits ? getValue({ index: 2, commits }) : display.colon } />
-      <Number display={ displayCommits ? getValue({ index: 1, commits }) : display[firstMinute] } />
-      <Number display={ displayCommits ? getValue({ index: 0, commits }) : display[secondMinute] } />
-    </NumberContainer>
-  ),
-)
+export const Clock = enhance(({ commits }) => (
+  <NumberContainer>
+    <Number display={ getValue({ index: 4, commits }) } />
+    <Number display={ getValue({ index: 3, commits }) } />
+    <Number display={ getValue({ index: 2, commits }) } />
+    <Number display={ getValue({ index: 1, commits }) } />
+    <Number display={ getValue({ index: 0, commits }) } />
+  </NumberContainer>
+))
