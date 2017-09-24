@@ -13,12 +13,7 @@ const NumberContainer = styled.div`
 `
 
 const getValue = ({ index, commits }) => {
-  const reversedCommits = commits
-    .toString()
-    .split('')
-    .reverse()
-    .join('')
-  const number = reversedCommits.toString()[index] || '0'
+  const number = commits.toString()[index] || '0'
   const numberAsText = display.getNumberAsText({ number })
   return display[numberAsText]
 }
@@ -35,12 +30,12 @@ const enhance = compose(
   }),
 )
 
+const getNumbers = ({ commits }) =>
+  new Array(5)
+    .fill(<div />)
+    .map((tag, index) => <Number key={ index } display={ getValue({ index, commits }) } />)
+    .reverse()
+
 export const Clock = enhance(({ commits }) => (
-  <NumberContainer>
-    <Number display={ getValue({ index: 4, commits }) } />
-    <Number display={ getValue({ index: 3, commits }) } />
-    <Number display={ getValue({ index: 2, commits }) } />
-    <Number display={ getValue({ index: 1, commits }) } />
-    <Number display={ getValue({ index: 0, commits }) } />
-  </NumberContainer>
+  <NumberContainer>{getNumbers({ commits })}</NumberContainer>
 ))
