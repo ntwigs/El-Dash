@@ -18,7 +18,7 @@ const getValue = ({ index, commits }) => {
 }
 
 const getBlanks = (commits, amountOfNumbers) => () => {
-  const commitLength = commits.toString().length
+  const commitLength = commits.toString().length - 1
   return amountOfNumbers - commitLength
 }
 
