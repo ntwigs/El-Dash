@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { compose, withState, lifecycle } from 'recompose'
-import { Number } from '../common/Number'
+import { Number } from '../common/PixelSymbol'
 import * as display from '../../utils/numbers'
 
 const Container = styled.div`
@@ -12,7 +12,6 @@ const Container = styled.div`
   zoom: 25%;
   position: relative;
   right: 75px;
-
 `
 
 const addZero = value => `0${ value }`

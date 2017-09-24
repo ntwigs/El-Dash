@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { foreground, background } from '../../utils/colors'
-import { margin, size, width, height } from './clockConfig'
+import { margin, size, width, height } from './textConfig'
 
 const fadeIn = (from, to) => keyframes`
   0% { transform: scale(1); opacity: 1; background-color: ${ from };}

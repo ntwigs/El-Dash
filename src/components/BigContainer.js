@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Clock } from './information/Main'
-import { Time } from './information/SmallTime'
+import { Clock } from './information/CommitAmount'
+import { Time } from './information/TimeDisplay'
 import { Text } from './text/Main'
 
 const Container = styled.div`

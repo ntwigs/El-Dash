@@ -1,12 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { compose, withState, lifecycle } from 'recompose'
-import { Number } from '../common/Number'
+import { Number } from '../common/PixelSymbol'
 import * as display from '../../utils/numbers'
 import { getCommits } from '../../http/commits'
 
 const NumberContainer = styled.div`
-  display: flex;
   display: flex;
   width: 100%;
   justify-content: center;
