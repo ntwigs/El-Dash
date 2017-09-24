@@ -18,7 +18,7 @@ const getValue = ({ index, commits }) => {
 }
 
 const getBlanks = (commits, amountOfNumbers) => () => {
-  const commitLength = commits.toString().length - 1
+  const commitLength = commits.toString().length
   return amountOfNumbers - commitLength
 }
 
@@ -47,7 +47,7 @@ const getNumbers = ({ commits, blanks, amountOfNumbers }) =>
     .map((tag, index) => (
       <Number
         key={ index }
-        display={ getValue({ index: blanks - index, commits }) }
+        display={ getValue({ index: index - blanks, commits }) }
       />
     ))
 
