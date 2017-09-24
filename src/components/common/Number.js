@@ -5,9 +5,6 @@ import { margin, size, width, height } from './clockConfig'
 
 const fadeIn = (from, to) => keyframes`
   0% { transform: scale(1); opacity: 1; background-color: ${ from };}
-  49% { background-color: ${ from }; }
-  50% { transform: scale(0); opacity: 0;}
-  51% { background-color: ${ to }; }
   100% { transform: scale(1); opacity: 1; background-color: ${ to };}
 `
 
@@ -17,8 +14,7 @@ const PixelFadeIn = styled.div`
   height: ${ size }px;
   border-radius: 1px;
   margin: ${ margin }px;
-  animation: ${ ({ from, to }) => fadeIn(from, to) } 0.35s both;
-  animation-delay: ${ ({ time }) => time }s;
+  animation: ${ ({ from, to }) => fadeIn(from, to) } 0s both;
 `
 
 const NumberContainer = styled.div`
@@ -37,7 +33,6 @@ const generateNumber = number =>
         to={ number[index] ? foreground : background }
         from={ number[index] ? background : foreground }
         key={ index }
-        time={ 0.003 * index }
       />
     ))
 
