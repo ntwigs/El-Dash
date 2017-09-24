@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-content: flex-end;
-  height: 200px;
+  height: 143px;
   zoom: 25%;
   position: relative;
   right: 75px;

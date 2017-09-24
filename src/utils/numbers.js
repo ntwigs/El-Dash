@@ -3,14 +3,10 @@ export const zero = [
   true, false, true,
   true, false, true,
   true, false, true,
-  true, false, true,
-  true, false, true,
   true, true, true,
 ]
 
 export const one = [
-  false, false, true,
-  false, false, true,
   false, false, true,
   false, false, true,
   false, false, true,
@@ -21,9 +17,7 @@ export const one = [
 export const two = [
   true, true, true,
   false, false, true,
-  false, false, true,
   true, true, true,
-  true, false, false,
   true, false, false,
   true, true, true,
 ]
@@ -31,9 +25,7 @@ export const two = [
 export const three = [
   true, true, true,
   false, false, true,
-  false, false, true,
   true, true, true,
-  false, false, true,
   false, false, true,
   true, true, true,
 ]
@@ -41,9 +33,7 @@ export const three = [
 export const four = [
   true, false, true,
   true, false, true,
-  true, false, true,
   true, true, true,
-  false, false, true,
   false, false, true,
   false, false, true,
 ]
@@ -51,9 +41,7 @@ export const four = [
 export const five = [
   true, true, true,
   true, false, false,
-  true, false, false,
   true, true, true,
-  false, false, true,
   false, false, true,
   true, true, true,
 ]
@@ -61,9 +49,7 @@ export const five = [
 export const six = [
   true, false, false,
   true, false, false,
-  true, false, false,
   true, true, true,
-  true, false, true,
   true, false, true,
   true, true, true,
 ]
@@ -74,16 +60,12 @@ export const seven = [
   false, false, true,
   false, false, true,
   false, false, true,
-  false, false, true,
-  false, false, true,
 ]
 
 export const eight = [
   true, true, true,
   true, false, true,
-  true, false, true,
   true, true, true,
-  true, false, true,
   true, false, true,
   true, true, true,
 ]
@@ -91,20 +73,16 @@ export const eight = [
 export const nine = [
   true, true, true,
   true, false, true,
-  true, false, true,
   true, true, true,
-  false, false, true,
   false, false, true,
   false, false, true,
 ]
 
 export const colon = [
   false, false, false,
-  false, false, false,
   false, true, false,
   false, false, false,
   false, true, false,
-  false, false, false,
   false, false, false,
 ]
 
