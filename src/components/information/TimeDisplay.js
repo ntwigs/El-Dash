@@ -51,12 +51,15 @@ const enhance = compose(
   }),
 )
 
-export const Time = enhance(({ firstHour, secondHour, firstMinute, secondMinute }) => (
+const getTime = ({ firstHour, secondHour, firstMinute, secondMinute }) => {
+  const timeArray = [firstHour, secondHour, 'colon', firstMinute, secondMinute]
+  return new Array(5)
+    .fill(<div />)
+    .map((tag, index) => <Number key={ index } display={ display[timeArray[index]] } />)
+}
+
+export const Time = enhance(props => (
   <Container>
-    <Number display={ display[firstHour] } />
-    <Number display={ display[secondHour] } />
-    <Number display={ display.colon } />
-    <Number display={ display[firstMinute] } />
-    <Number display={ display[secondMinute] } />
+    { getTime({ ...props }) }
   </Container>
 ))
