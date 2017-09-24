@@ -25,7 +25,7 @@ const NumberContainer = styled.div`
   min-width: ${ size * width + size + margin * 4 }px;
 `
 
-const generateNumber = number =>
+const generateNumber = ({ number }) =>
   new Array(height * width)
     .fill(<div />)
     .map((tag, index) => (
@@ -37,5 +37,5 @@ const generateNumber = number =>
     ))
 
 export const Number = ({ display: number }) => (
-  <NumberContainer>{generateNumber(number)}</NumberContainer>
+  <NumberContainer>{generateNumber({ number })}</NumberContainer>
 )
