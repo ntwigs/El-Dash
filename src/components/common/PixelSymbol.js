@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { foreground, background } from '../../utils/colors'
 import { margin, size, width, height } from './textConfig'
+import { colors } from '../../config'
 
 const fadeIn = (from, to) => keyframes`
   0% { transform: scale(1); opacity: 1; background-color: ${ from };}
@@ -30,8 +30,8 @@ const generateNumber = number =>
     .fill(<div />)
     .map((tag, index) => (
       <PixelFadeIn
-        to={ number[index] ? foreground : background }
-        from={ number[index] ? background : foreground }
+        to={ number[index] ? colors.foreground : colors.background }
+        from={ number[index] ? colors.background : colors.foreground }
         key={ index }
       />
     ))

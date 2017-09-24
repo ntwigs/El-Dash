@@ -1,8 +1,10 @@
+import { application } from '../config'
+
 export const getCommits = async () => {
-  const userData = await fetch(`https://api.github.com/users/${ process.env.REACT_APP_USERNAME }/events`, {
+  const userData = await fetch(`https://api.github.com/users/${ application.username }/events`, {
     headers: {
-      Authorization: `token ${ process.env.REACT_APP_GITHUB_API_KEY }`,
-      'User-Agent': process.env.REACT_APP_USERNAME,
+      Authorization: `token ${ application.githubApi }`,
+      'User-Agent': application.githubUsername,
     },
   })
   const userDataJson = await userData.json()
