@@ -1,9 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+import { injectGlobal } from 'styled-components'
 import { App } from './App'
 import registerServiceWorker from './registerServiceWorker'
 
-window.React = React
+injectGlobal`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+`
+
 ReactDOM.render(<App />, document.getElementById('root'))
 registerServiceWorker()
