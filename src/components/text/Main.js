@@ -11,15 +11,16 @@ const Container = styled.div`
   zoom: 50%;
 `
 
+const getCommitText = () => {
+  const letters = 'commits'.split('')
+  return new Array(7)
+    .fill(<div />)
+    .map((tag, index) => <Number key={ index } display={ display[letters[index]] } />)
+}
+
 const getText = () => (
   <Container>
-    <Number display={ display.c } />
-    <Number display={ display.o } />
-    <Number display={ display.m } />
-    <Number display={ display.m } />
-    <Number display={ display.i } />
-    <Number display={ display.t } />
-    <Number display={ display.s } />
+    { getCommitText() }
   </Container>
 )
 
