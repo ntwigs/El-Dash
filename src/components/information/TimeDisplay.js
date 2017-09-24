@@ -14,20 +14,22 @@ const Container = styled.div`
   right: 75px;
 `
 
-const addZero = value => `0${ value }`
-const extractValue = value => value.slice(-2)
-const correctNumbers = compose(extractValue, addZero)
+const extractValue = ({ date, index }) => {
+  return ({ number: date.slice(-2)[index] })
+}
+const addZero = ({ date, ...props }) => ({ date: `0${ date }`, ...props })
+const setDateString = ({ date, ...props }) => ({ date: date.toString(), ...props })
+
+const getDate = compose(display.getNumberAsText, extractValue, addZero, setDateString)
 
 const getHours = ({ index }) => {
-  const date = new Date().getHours().toString()
-  const getCorrectNumbers = correctNumbers(date)[index]
-  return display.getNumberAsText({ number: getCorrectNumbers })
+  const date = new Date().getHours()
+  return getDate({ date, index })
 }
 
 const getMinutes = ({ index }) => {
-  const date = new Date().getMinutes().toString()
-  const getCorrectNumbers = correctNumbers(date)[index]
-  return display.getNumberAsText({ number: getCorrectNumbers })
+  const date = new Date().getMinutes()
+  return getDate({ date, index })
 }
 
 const enhance = compose(
