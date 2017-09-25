@@ -17,12 +17,8 @@ const Container = styled.div`
 const extractValue = ({ index }) => ({ date }) => ({ number: date.slice(-2)[index] })
 const addZero = ({ date }) => ({ date: `0${ date }` })
 const setDateString = ({ date }) => ({ date: date.toString() })
-const getDate = ({ index }) => compose(
-  display.getNumberAsText,
-  extractValue({ index }),
-  addZero,
-  setDateString,
-)
+const getDate = ({ index }) =>
+  compose(display.getNumberAsText, extractValue({ index }), addZero, setDateString)
 
 const getHours = ({ index }) => {
   const date = new Date().getHours()
@@ -51,7 +47,7 @@ const enhance = compose(
   }),
 )
 
-const getTime = (time) => {
+const getTime = time => {
   const timeArray = [...Object.values(time)]
   return new Array(5)
     .fill(<div />)
@@ -60,6 +56,6 @@ const getTime = (time) => {
 
 export const Time = enhance(({ firstHour, secondHour, firstMinute, secondMinute }) => (
   <Container>
-    { getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute }) }
+    {getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute })}
   </Container>
 ))
