@@ -18,10 +18,6 @@ const getCommitText = () => {
     .map((tag, index) => <Number key={ index } display={ display[letters[index]] } />)
 }
 
-const getText = () => (
-  <Container>
-    { getCommitText() }
-  </Container>
-)
+const getText = () => <Container>{getCommitText()}</Container>
 
-export const Text = props => <Container>{getText(props)}</Container>
+export const Commit = props => <Container>{getText(props)}</Container>
