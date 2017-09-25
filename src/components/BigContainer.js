@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Clock } from './information/CommitAmount'
 import { Time } from './information/TimeDisplay'
-import { Text } from './text/Main'
+import { Commit } from './text/Commit'
 
 const Container = styled.div`
   width: 600px;
@@ -16,9 +16,9 @@ const Row = styled.div`
 export const BigContainer = props => (
   <Container>
     <Row>
-      <Time { ...props } />
-      <Text { ...props } />
+      <Time />
+      <Commit />
     </Row>
-    <Clock { ...props } />
+    <Clock />
   </Container>
 )
