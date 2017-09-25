@@ -34,7 +34,7 @@ const enhance = compose(
   defaultProps({ amountOfNumbers: 5 }),
   lifecycle({
     async componentDidMount() {
-      const fiveSecondDelay = 5000;
+      const fiveSecondDelay = 5000
       setState(this)
       setInterval(async () => setState(this), fiveSecondDelay)
     },
@@ -45,10 +45,7 @@ const getNumbers = ({ commits, blanks, amountOfNumbers }) =>
   new Array(amountOfNumbers)
     .fill(<div />)
     .map((tag, index) => (
-      <Number
-        key={ index }
-        display={ getValue({ index: index - blanks, commits }) }
-      />
+      <Number key={ index } display={ getValue({ index: index - blanks, commits }) } />
     ))
 
 export const Clock = enhance(({ commits, blanks, amountOfNumbers }) => (
