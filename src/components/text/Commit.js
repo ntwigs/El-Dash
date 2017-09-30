@@ -1,22 +1,25 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { compose, mapProps } from 'recompose'
 import { Number } from '../common/PixelSymbol'
 import * as display from '../../utils/letters'
+import { Container } from '../common/Container'
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: ${ ({ small }) => small ? 3 : 10 }px;
-  max-width: 0px;
-`
+const getCommitText = ({ small, text, amount }) => new Array(amount)
+  .fill(<div />)
+  .map((tag, index) => (
+    <Number key={ index } small={ small } amount={ amount } display={ display[text[index]] } />
+  ))
 
-const getCommitText = ({ small }) => {
-  const letters = 'commits'.split('')
-  return new Array(7)
-    .fill(<div />)
-    .map((tag, index) => (
-      <Number key={ index } small={ small } display={ display[letters[index]] } />
-    ))
-}
+const enhance = compose(
+  mapProps(props => Object.assign({}, props, {
+    text: props.text.split(''),
+    amount: props.text.length,
+  })),
+)
 
-export const Commit = props => <Container small={ props } >{getCommitText(props)}</Container>
+export const Commit = enhance(props => (
+  <Container small={ props.small } amount={ props.amount }>
+    {getCommitText(props)}
+  </Container>
+))
