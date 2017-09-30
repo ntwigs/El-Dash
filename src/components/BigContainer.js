@@ -5,20 +5,14 @@ import { Time } from './information/TimeDisplay'
 import { Commit } from './text/Commit'
 
 const Container = styled.div`
-  width: 600px;
-`
-
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-gap: 20px;
 `
 
 export const BigContainer = props => (
   <Container>
-    <Row>
-      <Time />
-      <Commit />
-    </Row>
-    <Clock />
+    <Time small />
+    <Commit small />
+    <Clock big />
   </Container>
 )
