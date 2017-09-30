@@ -46,8 +46,10 @@ const getTime = (time, small) => {
     .map((tag, index) => <Number key={ index } display={ display[timeArray[index]] } />)
 }
 
-export const Time = enhance(({ firstHour, secondHour, firstMinute, secondMinute, small, amount }) => (
-  <Container small={ small } amount={ amount } >
-    {getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute }, small)}
-  </Container>
-))
+export const Time = enhance(
+  ({ firstHour, secondHour, firstMinute, secondMinute, small, amount }) => (
+    <Container small={ small } amount={ amount }>
+      {getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute }, small)}
+    </Container>
+  ),
+)
