@@ -9,10 +9,10 @@ const Container = styled.div`
   grid-gap: 20px;
 `
 
-export const BigContainer = props => (
+export const BigContainer = () => (
   <Container>
     <Time small />
-    <Commit small />
-    <Clock big />
+    <Commit small text={ 'commits' } />
+    <Clock />
   </Container>
 )
