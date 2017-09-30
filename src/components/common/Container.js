@@ -7,8 +7,8 @@ const StyledContainer = styled.div`
   grid-gap: ${ ({ small }) => (small ? 3 : 10) }px;
 `
 
-export const Container = ({ children, small, amount }) => {
-  return <StyledContainer small={ small } amount={ amount }>
-    { children }
+export const Container = ({ children, small, amount }) => (
+  <StyledContainer small={ small } amount={ amount }>
+    {children}
   </StyledContainer>
-}
+)
