@@ -4,12 +4,7 @@ import { compose, withState, lifecycle, defaultProps } from 'recompose'
 import { Number } from '../common/PixelSymbol'
 import * as display from '../../utils/numbers'
 import { getCommits } from '../../http/commits'
-
-const NumberContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
-`
+import { Container } from '../common/Container'
 
 const getValue = ({ index, commits }) => {
   const number = commits.toString()[index] || '0'
@@ -31,7 +26,7 @@ const setState = async ({ props }) => {
 const enhance = compose(
   withState('commits', 'setCommits', 0),
   withState('blanks', 'setBlanks', 0),
-  defaultProps({ amountOfNumbers: 5 }),
+  defaultProps({ amount: 5 }),
   lifecycle({
     async componentDidMount() {
       const fiveSecondDelay = 5000
@@ -41,13 +36,15 @@ const enhance = compose(
   }),
 )
 
-const getNumbers = ({ commits, blanks, amountOfNumbers }) =>
-  new Array(amountOfNumbers)
+const getNumbers = ({ commits, blanks, amount }) =>
+  new Array(amount)
     .fill(<div />)
     .map((tag, index) => (
       <Number key={ index } display={ getValue({ index: index - blanks, commits }) } />
     ))
 
-export const Clock = enhance(({ commits, blanks, amountOfNumbers }) => (
-  <NumberContainer>{getNumbers({ commits, blanks, amountOfNumbers })}</NumberContainer>
+export const Clock = enhance(props => (
+  <Container small={ props.small } amount={ props.amount }>
+    {getNumbers(props)}
+  </Container>
 ))
