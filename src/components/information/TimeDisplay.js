@@ -1,15 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { compose, withState, lifecycle } from 'recompose'
+import { compose, withState, lifecycle, defaultProps } from 'recompose'
 import { Number } from '../common/PixelSymbol'
 import * as display from '../../utils/numbers'
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: ${ ({ small }) => (small ? 3 : 10) }px;
-  max-width: 0px;
-`
+import { Container } from '../common/Container'
 
 const extractValue = ({ index }) => ({ date }) => ({ number: date.slice(-2)[index] })
 const addZero = ({ date }) => ({ date: `0${ date }` })
@@ -32,6 +26,7 @@ const enhance = compose(
   withState('secondHour', 'setSecondHour', () => getHours({ index: 1 })),
   withState('firstMinute', 'setFirstMinute', () => getMinutes({ index: 0 })),
   withState('secondMinute', 'setSecondMinute', () => getMinutes({ index: 1 })),
+  defaultProps({ amount: 5 }),
   lifecycle({
     componentDidMount() {
       setInterval(() => {
@@ -44,15 +39,15 @@ const enhance = compose(
   }),
 )
 
-const getTime = time => {
+const getTime = (time, small) => {
   const timeArray = [...Object.values(time)]
   return new Array(5)
     .fill(<div />)
     .map((tag, index) => <Number key={ index } display={ display[timeArray[index]] } />)
 }
 
-export const Time = enhance(({ firstHour, secondHour, firstMinute, secondMinute, small }) => (
-  <Container small={ small }>
+export const Time = enhance(({ firstHour, secondHour, firstMinute, secondMinute, small, amount }) => (
+  <Container small={ small } amount={ amount } >
     {getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute }, small)}
   </Container>
 ))
