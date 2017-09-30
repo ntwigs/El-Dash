@@ -5,13 +5,10 @@ import { Number } from '../common/PixelSymbol'
 import * as display from '../../utils/numbers'
 
 const Container = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-end;
-  height: 143px;
-  zoom: 25%;
-  position: relative;
-  right: 75px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: ${ ({ small }) => (small ? 3 : 10) }px;
+  max-width: 0px;
 `
 
 const extractValue = ({ index }) => ({ date }) => ({ number: date.slice(-2)[index] })
@@ -54,8 +51,8 @@ const getTime = time => {
     .map((tag, index) => <Number key={ index } display={ display[timeArray[index]] } />)
 }
 
-export const Time = enhance(({ firstHour, secondHour, firstMinute, secondMinute }) => (
-  <Container>
-    {getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute })}
+export const Time = enhance(({ firstHour, secondHour, firstMinute, secondMinute, small }) => (
+  <Container small={ small }>
+    {getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute }, small)}
   </Container>
 ))
