@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../config'
+import { Container } from './Container'
 
 const sizeConfig = {
   size: 10,
@@ -15,12 +16,6 @@ const PixelFadeIn = styled.div`
   background-color: ${ ({ color }) => color };
 `
 
-const NumberContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: ${ sizeConfig.size / 10  }px;
-`
-
 const generateNumber = ({ display, small }) =>
   new Array(sizeConfig.height * sizeConfig.width)
     .fill(<div />)
@@ -32,4 +27,8 @@ const generateNumber = ({ display, small }) =>
       />
     ))
 
-export const Number = props => <NumberContainer>{generateNumber(props)}</NumberContainer>
+export const Number = props => (
+  <Container small={ props } amount={ 3 }>
+    {generateNumber(props)}
+  </Container>
+)
