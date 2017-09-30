@@ -12,14 +12,14 @@ const getValue = ({ index, commits }) => {
   return display[numberAsText]
 }
 
-const getBlanks = (commits, amountOfNumbers) => () => {
+const getBlanks = (commits, amount) => () => {
   const commitLength = commits.toString().length
-  return amountOfNumbers - commitLength
+  return amount - commitLength
 }
 
 const setState = async ({ props }) => {
   const commits = await getCommits()
-  props.setBlanks(getBlanks(commits, props.amountOfNumbers))
+  props.setBlanks(getBlanks(commits, props.amount))
   props.setCommits(commits)
 }
 
@@ -36,12 +36,11 @@ const enhance = compose(
   }),
 )
 
-const getNumbers = ({ commits, blanks, amount }) =>
-  new Array(amount)
-    .fill(<div />)
-    .map((tag, index) => (
-      <Number key={ index } display={ getValue({ index: index - blanks, commits }) } />
-    ))
+const getNumbers = ({ commits, blanks, amount }) => new Array(amount)
+  .fill(<div />)
+  .map((tag, index) => (
+    <Number key={ index } display={ getValue({ index: index - blanks, commits }) } />
+  ))
 
 export const Clock = enhance(props => (
   <Container small={ props.small } amount={ props.amount }>
