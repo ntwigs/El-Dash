@@ -4,20 +4,19 @@ import { Number } from '../common/PixelSymbol'
 import * as display from '../../utils/letters'
 
 const Container = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-end;
-  height: 143px;
-  zoom: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: ${ ({ small }) => small ? 3 : 10 }px;
+  max-width: 0px;
 `
 
-const getCommitText = () => {
+const getCommitText = ({ small }) => {
   const letters = 'commits'.split('')
   return new Array(7)
     .fill(<div />)
-    .map((tag, index) => <Number key={ index } display={ display[letters[index]] } />)
+    .map((tag, index) => (
+      <Number key={ index } small={ small } display={ display[letters[index]] } />
+    ))
 }
 
-const getText = () => <Container>{getCommitText()}</Container>
-
-export const Commit = props => <Container>{getText(props)}</Container>
+export const Commit = props => <Container small={ props } >{getCommitText(props)}</Container>
