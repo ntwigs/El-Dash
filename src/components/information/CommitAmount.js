@@ -6,9 +6,9 @@ import * as display from '../../utils/numbers'
 import { getCommits } from '../../http/commits'
 
 const NumberContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
 `
 
 const getValue = ({ index, commits }) => {
