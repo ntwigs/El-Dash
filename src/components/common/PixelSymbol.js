@@ -16,16 +16,15 @@ const PixelFadeIn = styled.div`
   background-color: ${ ({ color }) => color };
 `
 
-const generateNumber = ({ display, small }) =>
-  new Array(sizeConfig.height * sizeConfig.width)
-    .fill(<div />)
-    .map((tag, index) => (
-      <PixelFadeIn
-        small={ small }
-        color={ display[index] ? colors.foreground : colors.background }
-        key={ index }
-      />
-    ))
+const generateNumber = ({ display, small }) => new Array(sizeConfig.height * sizeConfig.width)
+  .fill(<div />)
+  .map((tag, index) => (
+    <PixelFadeIn
+      small={ small }
+      color={ display[index] ? colors.foreground : colors.background }
+      key={ index }
+    />
+  ))
 
 export const Number = props => (
   <Container small={ props } amount={ 3 }>
