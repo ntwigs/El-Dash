@@ -23,7 +23,7 @@ const setState = async ({ props }) => {
   props.setCommits(commits)
 }
 
-const getNumbers = ({ commits, blanks, animation }, amount) => (
+const getNumbers = ({ commits, blanks, animation }, amount, small) => (
   new Array(amount)
     .fill(<div />)
     .map((tag, index) => (
@@ -31,6 +31,7 @@ const getNumbers = ({ commits, blanks, animation }, amount) => (
         key={ index }
         display={ getValue({ index: index - blanks, commits }) }
         animation={ animation }
+        small={ small }
       />
     ))
 )
@@ -49,5 +50,5 @@ const enhance = compose(
 )
 
 export const Commits = enhance(({ amount, small, ...props }) => (
-  <Container { ...{ small, amount } }>{getNumbers(props, amount)}</Container>
+  <Container { ...{ small, amount } }>{getNumbers(props, amount, small)}</Container>
 ))
