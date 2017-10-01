@@ -1,16 +1,13 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import { compose, mapProps } from 'recompose'
-import { Number } from '../common/PixelSymbol'
-import * as display from '../../utils/letters'
+import * as display from '../../util/letters'
 import { Container } from '../common/Container'
+import { generateCharacters } from '../common/generateCharacters'
 
-const getCommitText = ({ small, text, amount }) =>
-  new Array(amount)
-    .fill(<div />)
-    .map((tag, index) => (
-      <Number key={ index } small={ small } amount={ amount } display={ display[text[index]] } />
-    ))
+const getCommitText = ({ text, ...props }) => {
+  const generatedCharacters = generateCharacters(display, text)
+  return generatedCharacters(props)
+}
 
 const enhance = compose(
   mapProps(props =>
@@ -22,7 +19,7 @@ const enhance = compose(
 )
 
 export const Text = enhance(props => (
-  <Container small={ props.small } amount={ props.amount }>
+  <Container small={ props.small } amount={ props.amount } animation={ props.animation }>
     {getCommitText(props)}
   </Container>
 ))
