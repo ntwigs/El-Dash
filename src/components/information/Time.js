@@ -1,9 +1,9 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import { compose, withState, lifecycle, defaultProps } from 'recompose'
-import { Number } from '../common/PixelSymbol'
-import * as display from '../../utils/numbers'
+import { Number } from '../common/Character'
+import * as display from '../../util/numbers'
 import { Container } from '../common/Container'
+import { generateCharacters } from '../common/generateCharacters'
 
 const extractValue = ({ index }) => ({ date }) => ({ number: date.slice(-2)[index] })
 const addZero = ({ date }) => ({ date: `0${ date }` })
@@ -39,13 +39,10 @@ const enhance = compose(
   }),
 )
 
-const getTime = (time, small, animation) => {
+const getTime = (time, props) => {
   const timeArray = [...Object.values(time)]
-  return new Array(5)
-    .fill(<div />)
-    .map((tag, index) => (
-      <Number small={ small } key={ index } display={ display[timeArray[index]] } animation={ animation } />
-    ))
+  const generatedCharacters = generateCharacters(display, timeArray)
+  return generatedCharacters(props)
 }
 
 export const Time = enhance(
@@ -53,8 +50,7 @@ export const Time = enhance(
     <Container small={ small } amount={ amount }>
       {getTime(
         { firstHour, secondHour, colon: 'colon', firstMinute, secondMinute },
-        small,
-        animation,
+        { small, animation, amount },
       )}
     </Container>
   ),
