@@ -1,10 +1,8 @@
 import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { colors } from '../../config'
-// import { Container } from './Container'
+import { colors, size, animationConfig } from '../../config'
 
 const sizeConfig = {
-  size: 20,
   width: 3,
   height: 5,
 }
@@ -12,25 +10,25 @@ const sizeConfig = {
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(${ ({ amount }) => amount }, 1fr);
-  grid-gap: ${ ({ small }) => (small ? 3 : sizeConfig.size / 2) }px;
-  margin: ${ ({ small }) => (small ? 2 : sizeConfig.size / 2) }px;
+  grid-gap: ${ ({ small }) => (small ? 2 : size / 2) }px;
+  margin: ${ ({ small }) => (small ? 2 : size / 2) }px;
 `
 
 const fadeIn = (from, to) => keyframes`
-   0% { transform: scale(1); opacity: 1; background-color: ${ from }}
+   0% { transform: scale(1); opacity: 1; background-color: ${ from } }
    49% { background-color: ${ from } }
-   50% { transform: scale(0); opacity: 0;}
+   50% { transform: scale(0); opacity: 0; }
    51% { background-color: ${ to } }
    100% { transform: scale(1); opacity: 1; background-color: ${ to } }
  `
 
 const PixelFadeIn = styled.div`
-  width: ${ ({ small }) => (small ? sizeConfig.size / 5 : sizeConfig.size) }px;
-  height: ${ ({ small }) => (small ? sizeConfig.size / 5 : sizeConfig.size) }px;
+  width: ${ ({ small }) => (small ? size / 4 : size) }px;
+  height: ${ ({ small }) => (small ? size / 4 : size) }px;
   border-radius: 1px;
   background-color: ${ ({ color }) => color };
-  animation: ${ ({ animation, from, to }) => animation && fadeIn(from, to) } 1s both;
-  animation-delay: ${ ({ time, animation }) => animation && time }s;
+  animation: ${ ({ animation, from, to }) => animation && fadeIn(from, to) } ${ () => animationConfig.speed }s both;
+  animation-delay: ${ ({ time, animation }) => time }s;
 `
 
 const generateNumber = ({ display, small, animation }) =>
@@ -43,6 +41,7 @@ const generateNumber = ({ display, small, animation }) =>
         from={ display[index] ? colors.background : colors.foreground }
         to={ display[index] ? colors.foreground : colors.background }
         key={ index }
+        time={ index * animationConfig.delay }
         animation={ animation }
       />
     ))
