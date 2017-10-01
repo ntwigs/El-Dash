@@ -28,7 +28,7 @@ const PixelFadeIn = styled.div`
   border-radius: 1px;
   background-color: ${ ({ color }) => color };
   animation: ${ ({ animation, from, to }) => animation && fadeIn(from, to) } ${ () => animationConfig.speed }s both;
-  animation-delay: ${ ({ time, animation }) => time }s;
+  animation-delay: ${ ({ time }) => time }s;
 `
 
 const generateNumber = ({ display, small, animation }) =>
