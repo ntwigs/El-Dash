@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { BigContainer } from './BigContainer'
-import { colors } from '../config'
+import { colors, layout } from '../config'
 
 const PageContainer = styled.section`
   width: 100vw;
@@ -16,6 +15,6 @@ const PageContainer = styled.section`
 
 export const Index = () => (
   <PageContainer>
-    <BigContainer />
+    { layout() }
   </PageContainer>
 )
