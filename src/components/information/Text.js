@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { compose, mapProps } from 'recompose'
-import * as display from '../../util/letters'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
 
 const getCommitText = ({ text, ...props }) => {
-  const generatedCharacters = generateCharacters(display, text)
+  const generatedCharacters = generateCharacters(text)
   return generatedCharacters(props)
 }
 
