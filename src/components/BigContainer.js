@@ -1,18 +1,5 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import { Clock } from './information/CommitAmount'
-import { Time } from './information/TimeDisplay'
-import { Commit } from './text/Commit'
-
-const Container = styled.div`
-  display: grid;
-  grid-gap: 20px;
-`
+import { layout } from '../config'
 
 export const BigContainer = () => (
-  <Container>
-    <Time small />
-    <Commit small text={ 'commits' } />
-    <Clock />
-  </Container>
+  layout()
 )
