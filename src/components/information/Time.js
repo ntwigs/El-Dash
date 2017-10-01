@@ -1,16 +1,24 @@
 import * as React from 'react'
-import { compose, withState, lifecycle, defaultProps } from 'recompose'
+import { compose, withState, lifecycle, defaultProps, mapProps } from 'recompose'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
 
 const getHours = ({ index }) => {
   const date = new Date().getHours()
-  return date.toString()[index]
+  const full = `0${ date.toString() }`
+  return full.slice(-2)[index]
 }
 
 const getMinutes = ({ index }) => {
   const date = new Date().getMinutes()
-  return date.toString()[index]
+  const full = `0${ date.toString() }`
+  return full.slice(-2)[index]
+}
+
+const getTime = (time, props) => {
+  const timeArray = [...Object.values(time)]
+  const generatedCharacters = generateCharacters(timeArray)
+  return generatedCharacters(props)
 }
 
 const enhance = compose(
@@ -30,12 +38,6 @@ const enhance = compose(
     },
   }),
 )
-
-const getTime = (time, props) => {
-  const timeArray = [...Object.values(time)]
-  const generatedCharacters = generateCharacters(timeArray)
-  return generatedCharacters(props)
-}
 
 export const Time = enhance(
   ({ firstHour, secondHour, firstMinute, secondMinute, small, amount, animation }) => (
