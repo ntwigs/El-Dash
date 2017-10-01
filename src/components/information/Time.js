@@ -1,24 +1,16 @@
 import * as React from 'react'
 import { compose, withState, lifecycle, defaultProps } from 'recompose'
-import { Number } from '../common/Character'
-import * as display from '../../util/numbers'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
 
-const extractValue = ({ index }) => ({ date }) => ({ number: date.slice(-2)[index] })
-const addZero = ({ date }) => ({ date: `0${ date }` })
-const setDateString = ({ date }) => ({ date: date.toString() })
-const getDate = ({ index }) =>
-  compose(display.getNumberAsText, extractValue({ index }), addZero, setDateString)
-
 const getHours = ({ index }) => {
   const date = new Date().getHours()
-  return getDate({ index })({ date })
+  return date.toString()[index]
 }
 
 const getMinutes = ({ index }) => {
-  const date = new Date().getSeconds()
-  return getDate({ index })({ date })
+  const date = new Date().getMinutes()
+  return date.toString()[index]
 }
 
 const enhance = compose(
@@ -41,7 +33,7 @@ const enhance = compose(
 
 const getTime = (time, props) => {
   const timeArray = [...Object.values(time)]
-  const generatedCharacters = generateCharacters(display, timeArray)
+  const generatedCharacters = generateCharacters(timeArray)
   return generatedCharacters(props)
 }
 
@@ -49,7 +41,7 @@ export const Time = enhance(
   ({ firstHour, secondHour, firstMinute, secondMinute, small, amount, animation }) => (
     <Container small={ small } amount={ amount }>
       {getTime(
-        { firstHour, secondHour, colon: 'colon', firstMinute, secondMinute },
+        { firstHour, secondHour, colon: ':', firstMinute, secondMinute },
         { small, animation, amount },
       )}
     </Container>
