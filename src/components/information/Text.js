@@ -21,7 +21,7 @@ const enhance = compose(
   ),
 )
 
-export const Commit = enhance(props => (
+export const Text = enhance(props => (
   <Container small={ props.small } amount={ props.amount }>
     {getCommitText(props)}
   </Container>

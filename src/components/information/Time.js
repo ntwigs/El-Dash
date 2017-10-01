@@ -17,7 +17,7 @@ const getHours = ({ index }) => {
 }
 
 const getMinutes = ({ index }) => {
-  const date = new Date().getMinutes()
+  const date = new Date().getSeconds()
   return getDate({ index })({ date })
 }
 
@@ -39,17 +39,23 @@ const enhance = compose(
   }),
 )
 
-const getTime = (time, small) => {
+const getTime = (time, small, animation) => {
   const timeArray = [...Object.values(time)]
   return new Array(5)
     .fill(<div />)
-    .map((tag, index) => <Number key={ index } display={ display[timeArray[index]] } />)
+    .map((tag, index) => (
+      <Number small={ small } key={ index } display={ display[timeArray[index]] } animation={ animation } />
+    ))
 }
 
 export const Time = enhance(
-  ({ firstHour, secondHour, firstMinute, secondMinute, small, amount }) => (
+  ({ firstHour, secondHour, firstMinute, secondMinute, small, amount, animation }) => (
     <Container small={ small } amount={ amount }>
-      {getTime({ firstHour, secondHour, colon: 'colon', firstMinute, secondMinute }, small)}
+      {getTime(
+        { firstHour, secondHour, colon: 'colon', firstMinute, secondMinute },
+        small,
+        animation,
+      )}
     </Container>
   ),
 )
