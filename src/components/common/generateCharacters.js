@@ -1,8 +1,10 @@
 import * as React from 'react'
 import { Number } from './Character'
+import { symbols } from '../../util/symbols'
 
-export const generateCharacters = (display, text) => ({ amount, small, animation }) => new Array(amount)
-  .fill(<div />)
-  .map((tag, index) => (
-    <Number key={ index } display={ display[text[index]] } { ...{ small, animation } } />
-  ))
+export const generateCharacters = text => ({ amount, small, animation }) =>
+  new Array(amount)
+    .fill(<div />)
+    .map((tag, index) => (
+      <Number key={ index } display={ symbols[text[index]] } { ...{ small, animation } } />
+    ))
