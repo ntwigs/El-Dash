@@ -10,7 +10,7 @@ const setState = async ({ props }) => {
 }
 
 const getNumbers = ({ commits, blanks, ...props }) => {
-  const value = commits.toString().split()
+  const value = commits.toString().split('')
   const asArr = new Array(props.amount)
     .fill(0)
     .reduce((acc, v, i) => (value[i] ? [...acc, value[i]] : [v, ...acc]), [])
