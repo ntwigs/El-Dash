@@ -11,7 +11,7 @@ const getCommitText = ({ text, ...props }) => {
 const enhance = compose(
   mapProps(props =>
     Object.assign({}, props, {
-      text: props.text.split(''),
+      text: props.text.toLowerCase().split(''),
       amount: props.text.length,
     }),
   ),
