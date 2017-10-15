@@ -1,0 +1,19 @@
+{
+  "name": "dashboard-server",
+  "version": "1.0.0",
+  "description": "server for dashboard api",
+  "main": "src/index.js",
+  "author": "Oscar Nordquist",
+  "license": "MIT",
+  "scripts": {
+    "start": "backpack" 
+  },
+  "dependencies": {
+    "backpack-core": "^0.4.3",
+    "dev": "^0.1.3",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "hapi": "^16.6.2"
+  }
+}
