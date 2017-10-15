@@ -6,8 +6,6 @@ const StyledContainer = styled.div`
   margin: ${ ({ small }) => (small ? 2 : 5) }px;
 `
 
-export const Container = ({ children, small, amount }) => (
-  <StyledContainer small={ small } amount={ amount }>
-    {children}
-  </StyledContainer>
+export const Container = ({ children, ...props }) => (
+  <StyledContainer { ...props }>{children}</StyledContainer>
 )
