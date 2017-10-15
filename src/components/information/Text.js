@@ -18,8 +18,6 @@ const enhance = compose(
   ),
 )
 
-export const Text = enhance(({ small, amount, animation, ...rest }) => (
-  <Container small={ small } amount={ amount } animation={ animation }>
-    {getCommitText({ ...rest, small, amount, animation })}
-  </Container>
+export const Text = enhance(props => (
+  <Container { ...props }>{getCommitText({ ...props })}</Container>
 ))
