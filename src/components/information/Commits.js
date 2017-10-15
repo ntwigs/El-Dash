@@ -30,6 +30,6 @@ const enhance = compose(
   }),
 )
 
-export const Commits = enhance(({ amount, small, ...props }) => (
-  <Container { ...{ small, amount } }>{getNumbers({ ...{ ...props, amount, small } })}</Container>
+export const Commits = enhance(props => (
+  <Container { ...props }>{getNumbers({ ...props })}</Container>
 ))
