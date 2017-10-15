@@ -46,7 +46,7 @@ const generateNumber = ({ display, small, animation }) =>
       />
     ))
 
-export const Number = props => (
+export const Character = props => (
   <Container small={ props } amount={ 3 }>
     {generateNumber(props)}
   </Container>
