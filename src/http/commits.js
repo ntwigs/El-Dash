@@ -1,12 +1,12 @@
-import { application } from '../config'
+import { github } from '../config'
 
 export const getCommits = async () => {
   const userData = await fetch(
-    `https://api.github.com/users/${ application.githubUsername }/events`,
+    `https://api.github.com/users/${ github.githubUsername }/events`,
     {
       headers: {
-        Authorization: `token ${ application.githubApi }`,
-        'User-Agent': application.githubUsername,
+        Authorization: `token ${ github.githubApi }`,
+        'User-Agent': github.githubUsername,
       },
     },
   )
