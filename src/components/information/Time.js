@@ -40,11 +40,11 @@ const enhance = compose(
 )
 
 export const Time = enhance(
-  ({ firstHour, secondHour, firstMinute, secondMinute, small, amount, animation }) => (
-    <Container small={ small } amount={ amount }>
+  ({ firstHour, secondHour, firstMinute, secondMinute, ...rest }) => (
+    <Container { ...rest } >
       {getTime(
         { firstHour, secondHour, colon: ':', firstMinute, secondMinute },
-        { small, animation, amount },
+        rest,
       )}
     </Container>
   ),
