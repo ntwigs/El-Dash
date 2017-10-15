@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { compose, withState, lifecycle, defaultProps, mapProps } from 'recompose'
+import { compose, withState, lifecycle, defaultProps } from 'recompose'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
 
