@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { compose, mapProps } from 'recompose'
+import { compose, mapProps, defaultProps } from 'recompose'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
 
@@ -9,6 +9,7 @@ const getCommitText = ({ text, ...props }) => {
 }
 
 const enhance = compose(
+  defaultProps({ text: 'text' }),
   mapProps(props =>
     Object.assign({}, props, {
       text: props.text.toLowerCase().split(''),
@@ -17,8 +18,8 @@ const enhance = compose(
   ),
 )
 
-export const Text = enhance(props => (
-  <Container small={ props.small } amount={ props.amount } animation={ props.animation }>
-    {getCommitText(props)}
+export const Text = enhance(({ small, amount, animation, ...rest }) => (
+  <Container small={ small } amount={ amount } animation={ animation }>
+    {getCommitText({ ...rest, small, amount, animation })}
   </Container>
 ))
