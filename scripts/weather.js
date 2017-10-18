@@ -17,7 +17,7 @@ const getLocation = async () => fetchJson('http://ipinfo.io/json')
 
 const writeWeather = async weatherData => {
   const fsWrite = util.promisify(fs.writeFile)
-  fsWrite('./src/weather.json', `{ "weather": ${ weatherData } }`)
+  fsWrite('./src/static/weather.json', `{ "weather": ${ weatherData } }`)
 }
 
 const farenheitToCelsius = f => (f - 32) * 5 / 9
