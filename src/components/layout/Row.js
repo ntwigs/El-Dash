@@ -8,10 +8,10 @@ const StyledRow = styled.div`
 `
 
 const checkChildren = ({ children }) => {
-  const smallProofChildren = children.map(
+  const childrenAsArr = Array.isArray(children) ? children : [children]
+  return childrenAsArr.map(
     child => (child.props.small ? child : <Text key={ null } text='small' small />),
   )
-  return smallProofChildren
 }
 
 export const Row = props => <StyledRow>{checkChildren(props)}</StyledRow>
