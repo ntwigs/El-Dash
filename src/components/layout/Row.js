@@ -1,6 +1,5 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Text } from '../information/Text'
 
 const StyledRow = styled.div`
   display: flex;
@@ -9,9 +8,7 @@ const StyledRow = styled.div`
 
 const checkChildren = ({ children }) => {
   const childrenAsArr = Array.isArray(children) ? children : [children]
-  return childrenAsArr.map(
-    child => (child.props.small ? child : <Text key={ null } text='small' small />),
-  )
+  return childrenAsArr.map((child, index) => React.cloneElement(child, { small: true, key: index }))
 }
 
 export const Row = props => <StyledRow>{checkChildren(props)}</StyledRow>
