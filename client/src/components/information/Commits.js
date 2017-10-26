@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { compose, withState, lifecycle, defaultProps } from 'recompose'
-import { getCommits } from '../../http/commits'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
+import githubJson from '../../../data/github.json'
 
 const setState = async ({ props }) => {
-  const commits = await getCommits()
-  props.setCommits(commits)
+  props.setCommits(githubJson)
 }
 
 const getNumbers = ({ commits, blanks, ...props }) => {

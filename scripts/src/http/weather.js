@@ -1,22 +1,14 @@
-import fetch from 'node-fetch'
-import fs from 'fs'
-import path from 'path'
-import { promisify } from 'util'
 import { forecastApi } from '../config'
-
-const fetchJson = async url => {
-  const data = await fetch(url)
-  return data.json()
-}
+import { fetch, writeData } from './util/tools'
 
 const getWeather = async ({ loc }) =>
-  fetchJson(`https://api.darksky.net/forecast/${ forecastApi }/${ loc }`)
+  fetch(`https://api.darksky.net/forecast/${ forecastApi }/${ loc }`)()
 
-const getLocation = async () => fetchJson('http://ipinfo.io/json')
+const getLocation = async () => fetch('http://ipinfo.io/json')()
 
 const writeWeather = async weatherData => {
-  const fsWrite = promisify(fs.writeFile)
-  fsWrite(path.join(__dirname, '../../../weather.json'), `{ "weather": ${ weatherData } }`)
+  const writeDataTo = writeData(`{ "weather": ${ weatherData } }`)
+  writeDataTo('weather')
 }
 
 const farenheitToCelsius = ({ temperature }) => {

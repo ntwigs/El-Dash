@@ -2,7 +2,7 @@ import * as React from 'react'
 import { compose, withState, lifecycle, mapProps, defaultProps } from 'recompose'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
-import weather from '../../static/weather.json'
+import weather from '../../../data/weather.json'
 
 const getWeatherText = ({ temperature, ...props }) => {
   const generatedCharacters = generateCharacters(temperature)

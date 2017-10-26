@@ -59,7 +59,7 @@ export const colors = {
  * text - The text to be displayed. Ex. text={ 'commits' }
  * 
  * Available weather options:
- * f - display farenheit. Default: celsius
+ * farenheit - display farenheit. Default: celsius
  * 
  * Default:
  * <Container>
@@ -82,6 +82,6 @@ export const layout = () => (
       <Text  text='today' small animation />
     </Row>
     <Commits animation />
-    <Weather animation f />
+    <Weather animation farenheit />
   </Container>
 )
