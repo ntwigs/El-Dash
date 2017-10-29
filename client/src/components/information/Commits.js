@@ -2,15 +2,16 @@ import * as React from 'react'
 import { compose, withState, lifecycle, defaultProps } from 'recompose'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
-import githubJson from '../../../data/github.json'
 
 const setState = async ({ props }) => {
-  props.setCommits(githubJson)
+  const res = await fetch('http://localhost:3000/commits')
+  const { commits } = await res.json()
+  props.setCommits(commits)
 }
 
 const getNumbers = ({ commits, blanks, ...props }) => {
   const value = commits.toString().split('')
-  const asArr = new Array(props.amount)
+  const asArr = Array(props.amount)
     .fill(0)
     .reduce((acc, v, i) => (value[i] ? [...acc, value[i]] : [v, ...acc]), [])
   const generatedCharacters = generateCharacters(asArr)
