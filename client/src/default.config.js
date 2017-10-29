@@ -6,15 +6,6 @@ import { Weather } from './components/information/Weather'
 import { Row } from './components/layout/Row'
 import { Container } from './components/layout/Container'
 
-export const github = {
-  githubApi: 'xxx-xxx-xxx-xxx',
-  githubUsername: 'Your-github-username',
-}
-
-export const weather = {
-  forecastApi: '673582a3e494c0db0c6b513cdf87b605',
-}
-
 /**
  * Default:
  * size = 30
