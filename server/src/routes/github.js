@@ -7,15 +7,19 @@ const router = new Router()
 router.get('/commits', async (ctx, next) => {
   const headers = {
     headers: {
-      Authorization: `token ${ github.key }`,
+      Authorization: `token ${github.key}`,
       'User-Agent': github.username,
     },
   }
-  const events = await jFetch(`https://api.github.com/users/${ github.username }/events`, headers)
+  const events = await jFetch(
+    `https://api.github.com/users/${github.username}/events`,
+    headers,
+  )
   const today = new Date().getDate()
   const commits = events
     .filter(
-      ({ created_at, payload }) => today === new Date(created_at).getDate() && 'commits' in payload,
+      ({ created_at, payload }) =>
+        today === new Date(created_at).getDate() && 'commits' in payload,
     )
     .map(({ payload }) => payload.commits.length)
     .reduce((acc, val) => acc + val, 0)
