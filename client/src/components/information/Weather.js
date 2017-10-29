@@ -17,11 +17,12 @@ const getWeatherText = ({ temperature, ...props }) => {
 const setState = async ({ props }) => {
   const res = await fetch('http://localhost:3000/weather')
   const weather = await res.json()
+  props.setTemperature(weather)
 }
 
 const enhance = compose(
   withState('temperature', 'setTemperature', { celsius: 0, farenheit: 0 }),
-  defaultProps({ temperature: 0, farenheit: false }),
+  defaultProps({ farenheit: false }),
   mapProps(({ temperature, farenheit, ...props }) => {
     const scale = farenheit ? 'f' : 'c'
     const temperatureScale = farenheit
