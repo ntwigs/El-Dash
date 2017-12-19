@@ -3,19 +3,23 @@ import { compose, withState, lifecycle, defaultProps } from 'recompose'
 import { Container } from '../common/Container'
 import { generateCharacters } from '../common/generateCharacters'
 
-const setState = async ({ props }) => {
-  const res = await fetch('http://localhost:3000/commits')
-  const { commits } = await res.json()
-  props.setCommits(commits)
+const setState = async ({ props: { setCommits } }) => {
+  try {
+    const res = await fetch('http://localhost:3000/commits')
+    const { commits } = await res.json()
+    setCommits(commits)
+  } catch(err) {
+    setCommits('api')
+  }
 }
 
-const getNumbers = ({ commits, blanks, ...props }) => {
+const getNumbers = ({ commits, blanks, amount, ...props }) => {
   const value = commits.toString().split('')
-  const asArr = Array(props.amount)
+  const asArr = Array(amount)
     .fill(0)
     .reduce((acc, v, i) => (value[i] ? [...acc, value[i]] : [v, ...acc]), [])
   const generatedCharacters = generateCharacters(asArr)
-  return generatedCharacters(props)
+  return generatedCharacters({ ...props, amount })
 }
 
 const enhance = compose(
