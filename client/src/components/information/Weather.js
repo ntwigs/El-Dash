@@ -31,12 +31,12 @@ const enhance = compose(
     const temperatureArray = temperatureScale
       .toString()
       .concat('*', scale)
-      .toLowerCase()
       .split('')
-    return Object.assign({}, props, {
+    return {
+      ...props,
       temperature: temperatureArray,
       amount: temperatureArray.length,
-    })
+    }
   }),
   lifecycle({
     async componentDidMount() {
@@ -50,5 +50,5 @@ const enhance = compose(
 )
 
 export const Weather = enhance(props => (
-  <Container {...props}>{getWeatherText({ ...props })}</Container>
+  <Container props>{getWeatherText(props)}</Container>
 ))
