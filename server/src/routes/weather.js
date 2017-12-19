@@ -6,7 +6,7 @@ import { checkKey } from './middleware/checkKey'
 
 const router = new Router()
 
-router.get('/weather', , async (ctx, next) => {
+router.get('/weather', async (ctx, next) => {
   const { loc } = await jFetch('http://ipinfo.io/json')
   const { currently } = await jFetch(
     `https://api.darksky.net/forecast/${forecast.key}/${loc}`,
