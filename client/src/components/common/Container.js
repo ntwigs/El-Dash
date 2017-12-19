@@ -7,5 +7,5 @@ const StyledContainer = styled.div`
 `
 
 export const Container = ({ children, ...props }) => (
-  <StyledContainer { ...props }>{children}</StyledContainer>
+  <StyledContainer { ...props }>{ children }</StyledContainer>
 )
