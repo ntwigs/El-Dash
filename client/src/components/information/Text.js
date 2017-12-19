@@ -10,14 +10,13 @@ const getCommitText = ({ text, ...props }) => {
 
 const enhance = compose(
   defaultProps({ text: 'text' }),
-  mapProps(props =>
-    Object.assign({}, props, {
-      text: props.text.toLowerCase().split(''),
-      amount: props.text.length,
-    }),
-  ),
+  mapProps(props => ({
+    ...props,
+    text: props.text.toLowerCase().split(''),
+    amount: props.text.length,
+  })),
 )
 
 export const Text = enhance(props => (
-  <Container { ...props }>{getCommitText({ ...props })}</Container>
+  <Container props>{getCommitText(props)}</Container>
 ))
