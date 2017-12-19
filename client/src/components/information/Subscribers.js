@@ -8,21 +8,22 @@ const getSubscriberText = ({ subscribers, ...props }) => {
   return generatedCharacters(props)
 }
 
-const setState = async ({ props }) => {
-  const res = await fetch(`http://localhost:3000/youtube/${ props.channelName }`)
+const setState = async ({ props: { channelName, setSubscribers } }) => {
+  const res = await fetch(`http://localhost:3000/youtube/${ channelName }`)
   const { subscriberCount } = await res.json()
-  props.setSubscribers(subscriberCount)
+  setSubscribers(subscriberCount)
 }
 
 const enhance = compose(
   withState('subscribers', 'setSubscribers', 0),
-  defaultProps({ channelName: 'PewDiePie' }),
+  defaultProps({ channelName: '' }),
   mapProps(({ subscribers, ...props }) => {
     const subscriberArr = subscribers.toString().split('')
-    return Object.assign(props, {}, {
+    return {
+      ...props,
       subscribers: subscriberArr,
       amount: subscriberArr.length,
-    })
+    }
   }),
   lifecycle({
     async componentDidMount() {
@@ -34,5 +35,5 @@ const enhance = compose(
 )
 
 export const Subscribers = enhance(props => (
-  <Container {...props}>{getSubscriberText({ ...props })}</Container>
+  <Container { ...props }>{getSubscriberText({ ...props })}</Container>
 ))
