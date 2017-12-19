@@ -1,10 +1,11 @@
 import Router from 'koa-router'
 import { github } from '../config'
 import { jFetch } from '../util/jFetch'
+import { checkKey } from './middleware/checkKey'
 
 const router = new Router()
 
-router.get('/commits', async (ctx, next) => {
+router.get('/commits', checkKey('github', 'commits'), async (ctx, next) => {
   const headers = {
     headers: {
       Authorization: `token ${github.key}`,
