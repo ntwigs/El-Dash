@@ -6,7 +6,7 @@ import { githubRouter } from './routes/github'
 import { youtubeRouter } from './routes/youtube'
 
 const app = new Koa()
-const PORT = 3000
+const PORT = 3001
 
 app.use(cors())
 app.use(compose([weatherRouter.routes(), githubRouter.routes(), youtubeRouter.routes()]))
