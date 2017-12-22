@@ -9,7 +9,7 @@ const getSubscriberText = ({ subscribers, ...props }) => {
 }
 
 const setState = async ({ props: { channelName, setSubscribers } }) => {
-  const res = await fetch(`http://localhost:3000/youtube/${ channelName }`)
+  const res = await fetch(`http://localhost:3001/youtube/${ channelName }`)
   const { subscriberCount } = await res.json()
   setSubscribers(subscriberCount)
 }

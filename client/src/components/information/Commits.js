@@ -5,7 +5,7 @@ import { generateCharacters } from '../common/generateCharacters'
 
 const setState = async ({ props: { setCommits } }) => {
   try {
-    const res = await fetch('http://localhost:3000/commits')
+    const res = await fetch('http://localhost:3001/commits')
     const { commits } = await res.json()
     setCommits(commits)
   } catch(err) {

@@ -15,7 +15,7 @@ const getWeatherText = ({ temperature, ...props }) => {
 }
 
 const setState = async ({ props }) => {
-  const res = await fetch('http://localhost:3000/weather')
+  const res = await fetch('http://localhost:3001/weather')
   const weather = await res.json()
   props.setTemperature(weather)
 }
