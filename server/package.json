@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "backpack"
+    "start": "backpack",
+    "build": "backpack build"
   },
   "dependencies": {
     "backpack-core": "^0.4.3",
