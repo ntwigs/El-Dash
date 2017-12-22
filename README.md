@@ -35,7 +35,7 @@ It all depends on what components you choose to display, which colors you prefer
 You! Yes you! You can read about that in the [wiki](https://github.com/NorthernTwig/El-Dash/wiki)! Where every available component is properly explained, and also the setup process!
 
 ## Why don't you just write the instructions here?
-This readme would be too long for you to handle which that amount of information!
+This readme would be too long for you to handle with that amount of information!
 
 
 
