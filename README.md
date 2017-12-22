@@ -24,12 +24,10 @@ The dashboard is lightweight enough to run on a Raspberry Pi - if the animations
 ## What does this majestic dashboard look like?
 It all depends on what components you choose to display, which colors you prefer, and if you are going for animations or not! But the dashboard could look like the following:
 
-<div style="display: flex !important; ">
-  <img alt="black and yellow" src="https://user-images.githubusercontent.com/14088342/34292310-b6a2c9e8-e700-11e7-8505-0b82aa186670.gif" />
-  <img alt="old style" src="https://user-images.githubusercontent.com/14088342/34292314-b6e6b658-e700-11e7-9690-bb8b0492c1ea.gif" />
-  <img alt="dark" src="https://user-images.githubusercontent.com/14088342/34292761-6759350a-e702-11e7-856d-4c2b216a550b.gif" />
-  <img alt="youtube" src="https://user-images.githubusercontent.com/14088342/34292315-b70d764e-e700-11e7-8c02-474b011c2a52.gif" />
-</div>
+<img width="150" alt="black and yellow" src="https://user-images.githubusercontent.com/14088342/34292310-b6a2c9e8-e700-11e7-8505-0b82aa186670.gif" />
+<img width="150" alt="old style" src="https://user-images.githubusercontent.com/14088342/34292314-b6e6b658-e700-11e7-9690-bb8b0492c1ea.gif" />
+<img width="150" alt="dark" src="https://user-images.githubusercontent.com/14088342/34292761-6759350a-e702-11e7-856d-4c2b216a550b.gif" />
+<img width="150" alt="youtube" src="https://user-images.githubusercontent.com/14088342/34292315-b70d764e-e700-11e7-8c02-474b011c2a52.gif" />
 
 ## .. And how do I use this?
 You! Yes you! You can read about that in the [wiki](#)! Where every available component is properly explained, and also the setup process!
