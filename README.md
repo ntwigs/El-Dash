@@ -27,7 +27,7 @@ It all depends on what components you choose to display, which colors you prefer
 <div style="display: flex;">
   <img alt="black and yellow" src="https://user-images.githubusercontent.com/14088342/34292310-b6a2c9e8-e700-11e7-8505-0b82aa186670.gif" />
   <img alt="old style" src="https://user-images.githubusercontent.com/14088342/34292314-b6e6b658-e700-11e7-9690-bb8b0492c1ea.gif" />
-  <img alt="dark" src="https://user-images.githubusercontent.com/14088342/34292311-b6c4ba44-e700-11e7-9864-b3ead8bd3a64.gif" />
+  <img alt="dark" src="https://user-images.githubusercontent.com/14088342/34292761-6759350a-e702-11e7-856d-4c2b216a550b.gif" />
   <img alt="youtube" src="https://user-images.githubusercontent.com/14088342/34292315-b70d764e-e700-11e7-8c02-474b011c2a52.gif" />
 </div>
 
