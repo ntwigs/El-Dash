@@ -5,4 +5,6 @@ import { symbols } from '../../util/symbols'
 export const generateCharacters = text => ({ amount, ...props }) =>
   Array(amount)
     .fill(<div />)
-    .map((tag, index) => <Character key={ index } display={ symbols[text[index]] } { ...props } />)
+    .map((_, index) => (
+      <Character key={index} display={symbols[text[index]]} {...props} />
+    ))
