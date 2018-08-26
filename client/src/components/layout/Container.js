@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Draggable from 'react-draggable'
 import styled from 'styled-components'
 import { Commits } from '../information/Commits'
 import { Time } from '../information/Time'
@@ -14,7 +15,7 @@ const renderDefault = () => (
   <StyledContainer>
     <Row>
       <Time small animation />
-      <Text small text={ 'commits' } />
+      <Text small text={'commits'} />
     </Row>
     <Commits animation />
   </StyledContainer>
@@ -22,4 +23,8 @@ const renderDefault = () => (
 
 const checkChildren = ({ children }) => children || renderDefault()
 
-export const Container = props => <StyledContainer>{checkChildren(props)}</StyledContainer>
+export const Container = props => (
+  <StyledContainer>
+    <Draggable>{checkChildren(props)}</Draggable>
+  </StyledContainer>
+)
