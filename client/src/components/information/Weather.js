@@ -50,5 +50,5 @@ const enhance = compose(
 )
 
 export const Weather = enhance(props => (
-  <Container props>{getWeatherText(props)}</Container>
+  <Container { ...props }>{getWeatherText(props)}</Container>
 ))
