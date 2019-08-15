@@ -41,7 +41,7 @@ const enhance = compose(
 
 export const Time = enhance(
   ({ firstHour, secondHour, firstMinute, secondMinute, ...props }) => (
-    <Container props>
+    <Container {...props}>
       {getTime(
         { firstHour, secondHour, colon: ':', firstMinute, secondMinute },
         props,
