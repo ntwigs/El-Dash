@@ -1,29 +1,89 @@
 import * as React from 'react'
-import { compose, mapProps, withState, withHandlers } from 'recompose'
+import {compose, withState, withHandlers} from 'recompose'
 import styled from 'styled-components'
 import Draggable from 'react-draggable'
+import Resizable from 're-resizable'
+import {ComponentConsumer} from '../context'
 
 const StyledContainer = styled(Draggable)`
-  margin: ${({ small }) => (small ? 2 : 5)}px;
+  margin: ${({small}) => (small ? 2 : 5)}px;
 `
 
 const CharacterContainer = styled.div`
   display: flex;
-  margin: ${({ small }) => (small ? 2 : 5)}px;
+  transform-origin: top left;
+  transform: scale(${({scale}) => scale});
+  overflow: visible;
 `
 
-const PureContainer = ({ children, ...props }) => (
-  <StyledContainer {...props} position={null}>
-    <CharacterContainer>{children}</CharacterContainer>
-  </StyledContainer>
+const StyledResizable = styled(Resizable)`
+  transition: border 250ms;
+  border: 1px solid ${({focus}) => (focus ? 'red' : 'transparent')};
+  position: absolute !important;
+`
+
+const PureContainer = ({
+  children,
+  position,
+  id,
+  onResize,
+  size,
+  onFocus,
+  onBlur,
+  focus,
+  onResizeStart,
+  onResizeStop,
+  isDragging,
+  ...props
+}) => (
+  <ComponentConsumer>
+    {({updatePosition}) => (
+      <StyledContainer
+        {...props}
+        position={position}
+        onStart={tes => {
+          console.log(tes)
+          return tes._dispatchListeners.length < 2
+          return !isDragging
+        }}
+        onStop={(_, e) => updatePosition({id, e})}>
+        <StyledResizable
+          focus={focus}
+          onResizeStart={onResizeStart}
+          onResizeStop={onResizeStop}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          tabindex="0"
+          lockAspectRatio
+          onResize={onResize}>
+          <CharacterContainer scale={size}>{children}</CharacterContainer>
+        </StyledResizable>
+      </StyledContainer>
+    )}
+  </ComponentConsumer>
 )
 
-// TODO: STORE EACH COMPONENT INSIDE LOCALSTORAGE WITH A POSITION ON DROP
 export const Container = compose(
-  withState('meta', 'setMeta', attributes => attributes),
+  withState('size', 'setSize', 1),
+  withState('focus', 'setFocus', false),
+  withState('isDragging', 'setIsDragging', false),
   withHandlers({
-    onStop: data => (_, { x, y }) => {
-      localStorage.setItem('location', 'wat')
+    onResize: ({setSize}) => (_, __, c) => {
+      const width = c.clientWidth
+      const scale = width / 490
+      setSize(scale)
     },
-  })
+    onFocus: ({setFocus}) => () => {
+      setFocus(true)
+    },
+    onBlur: ({setFocus}) => () => {
+      setFocus(false)
+    },
+    onResizeStart: ({setIsDragging}) => () => {
+      setIsDragging(true)
+    },
+    onResizeStop: ({setIsDragging}) => () => {
+      setIsDragging(false)
+    },
+  }),
 )(PureContainer)
