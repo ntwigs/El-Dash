@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import {compose, withState, withHandlers} from 'recompose'
+import {compose, withState, withHandlers, lifecycle} from 'recompose'
 import {ComponentConsumer} from '../context'
 import settings from '../../assets/round-settings-24px.svg'
 import clear from '../../assets/round-clear-24px.svg'
@@ -111,11 +111,7 @@ const EditorContainer = ({isEditorOpen}) => (
   </ComponentConsumer>
 )
 
-const PureEditor = ({
-  openEditor,
-  closeEditor,
-  isEditorOpen,
-}) => (
+const PureEditor = ({openEditor, closeEditor, isEditorOpen}) => (
   <div>
     <Settings
       src={settings}
@@ -138,5 +134,17 @@ export const Editor = compose(
   withHandlers({
     openEditor: ({setEditorOpen}) => () => setEditorOpen(true),
     closeEditor: ({setEditorOpen}) => () => setEditorOpen(false),
+  }),
+  lifecycle({
+    componentDidMount() {
+      const F_KEY = 102
+      window.addEventListener('keypress', ({keyCode}) => {
+        if (F_KEY === keyCode) {
+          this.props.isEditorOpen
+            ? this.props.closeEditor()
+            : this.props.openEditor()
+        }
+      })
+    },
   }),
 )(PureEditor)
