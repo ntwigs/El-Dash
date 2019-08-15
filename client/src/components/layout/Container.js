@@ -1,10 +1,11 @@
 import * as React from 'react'
 import Draggable from 'react-draggable'
+import {ResizableBox} from 'react-resizable'
 import styled from 'styled-components'
-import { Commits } from '../information/Commits'
-import { Time } from '../information/Time'
-import { Text } from '../information/Text'
-import { Row } from './Row'
+import {Commits} from '../information/Commits'
+import {Time} from '../information/Time'
+import {Text} from '../information/Text'
+import {Row} from './Row'
 
 const StyledContainer = styled.div`
   display: grid;
@@ -21,10 +22,9 @@ const renderDefault = () => (
   </StyledContainer>
 )
 
-const checkChildren = ({ children }) => children || renderDefault()
+const checkChildren = ({children}) => children || renderDefault()
 
 export const Container = props => (
   <StyledContainer>
-    <Draggable>{checkChildren(props)}</Draggable>
   </StyledContainer>
 )
