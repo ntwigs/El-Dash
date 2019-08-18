@@ -4,4 +4,5 @@ export const components = {
   text: 'TEXT',
   time: 'TIME',
   weather: 'WEATHER',
+  today: 'TODAY',
 }
