@@ -5,7 +5,8 @@ import {Subscribers} from '../information/Subscribers'
 import {Text} from '../information/Text'
 import {Time} from '../information/Time'
 import {Weather} from '../information/Weather'
-import {DateComponent} from '../information/Date'
+import {Weekday} from '../information/Weekday'
+import {Today} from '../information/Today'
 import {ComponentConsumer} from '../context'
 
 const componentHash = {
@@ -25,7 +26,10 @@ const componentHash = {
     <Weather animation type={components.weather} id={id} position={position} />
   ),
   [components.date]: ({position, id}) => (
-    <DateComponent animation type={components.date} id={id} position={position} />
+    <Weekday animation type={components.date} id={id} position={position} />
+  ),
+  [components.today]: ({position, id}) => (
+    <Today animation type={components.date} id={id} position={position} />
   ),
 }
 
