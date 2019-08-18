@@ -92,9 +92,9 @@ const EditorContainer = ({isEditorOpen}) => (
       resetComponents,
       addTextComponent,
       addTimeComponent,
+      addTodayComponent,
       addWeatherComponent,
-      addTimeTextComponent,
-      addDateComponent,
+      addWeekdayComponent,
       centerAllComponents,
     }) => (
       <StyledEditorContainer isEditorOpen={isEditorOpen}>
@@ -103,9 +103,10 @@ const EditorContainer = ({isEditorOpen}) => (
         <Button onClick={addTextComponent}>Text</Button>
         <Button onClick={addTimeComponent}>Time</Button>
         <Button onClick={addWeatherComponent}>Weather</Button>
-        <Button onClick={addDateComponent}>Weekday</Button>
-        <Button onClick={addTimeTextComponent}>Subscribers</Button>
-        <Button onClick={addTextComponent}>Commits</Button>
+        <Button onClick={addWeekdayComponent}>Weekday</Button>
+        <Button onClick={addTodayComponent}>Today</Button>
+        <Button onClick={() => {}}>Subscribers</Button>
+        <Button onClick={() => {}}>Commits</Button>
       </StyledEditorContainer>
     )}
   </ComponentConsumer>
@@ -138,6 +139,7 @@ export const Editor = compose(
   lifecycle({
     componentDidMount() {
       const F_KEY = 102
+
       window.addEventListener('keypress', ({keyCode}) => {
         if (F_KEY === keyCode) {
           this.props.isEditorOpen
