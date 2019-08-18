@@ -4,6 +4,7 @@ import {compose, withState, withHandlers, lifecycle} from 'recompose'
 import {ComponentConsumer} from '../context'
 import settings from '../../assets/round-settings-24px.svg'
 import clear from '../../assets/round-clear-24px.svg'
+import Modal from 'react-modal'
 
 const getRandomColor = () => {
   const colors = ['#B8EEDE', '#EEB8E6', '#EBDCB6', '#94C1E1', '#BBE194']
@@ -11,21 +12,10 @@ const getRandomColor = () => {
   return colors[randomNumber]
 }
 
-const StyledEditorContainer = styled.div`
-  transition: all 250ms;
-  position: fixed;
-  top: 0;
-  right: ${({isEditorOpen}) => (isEditorOpen ? 0 : '-100%')};
-  height: 100%;
-  z-index: 1;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-`
-
 const Button = styled.button`
   cursor: pointer;
-  width: 132px;
+  pointer-events: auto;
+  width: 264px;
   text-align: right;
   padding: 10px;
   background-color: #34344a;
@@ -41,6 +31,18 @@ const Button = styled.button`
   align-items: center;
   flex-direction: row;
   &:before {
+    content: '.';
+    display: flex;
+    flex-direction: row;
+    items: center;
+    z-index: 2;
+    width: 11px;
+    height: 11px;
+    background-color: ${getRandomColor()};
+    color: #34344a;
+    border-radius: 20px;
+  }
+  &:after {
     content: '.';
     display: flex;
     flex-direction: row;
@@ -86,7 +88,7 @@ const Exit = styled.img`
   transition: all 250ms;
 `
 
-const EditorContainer = ({isEditorOpen}) => (
+const EditorContainer = ({isEditorOpen, closeEditor}) => (
   <ComponentConsumer>
     {({
       resetComponents,
@@ -97,7 +99,24 @@ const EditorContainer = ({isEditorOpen}) => (
       addWeekdayComponent,
       centerAllComponents,
     }) => (
-      <StyledEditorContainer isEditorOpen={isEditorOpen}>
+      <Modal
+        shouldCloseOnOverlayClick
+        style={{
+          content: {
+            backgroundColor: 'transparent',
+            pointerEvents: 'none',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            border: 'none',
+          },
+          overlay: {
+            backgroundColor: 'transparent',
+          },
+        }}
+        onRequestClose={closeEditor}
+        isOpen={isEditorOpen}>
         <Button onClick={resetComponents}>Reset</Button>
         <Button onClick={centerAllComponents}>Center</Button>
         <Button onClick={addTextComponent}>Text</Button>
@@ -107,26 +126,14 @@ const EditorContainer = ({isEditorOpen}) => (
         <Button onClick={addTodayComponent}>Today</Button>
         <Button onClick={() => {}}>Subscribers</Button>
         <Button onClick={() => {}}>Commits</Button>
-      </StyledEditorContainer>
+      </Modal>
     )}
   </ComponentConsumer>
 )
 
 const PureEditor = ({openEditor, closeEditor, isEditorOpen}) => (
   <div>
-    <Settings
-      src={settings}
-      alt="settings"
-      onClick={openEditor}
-      isEditorOpen={isEditorOpen}
-    />
-    <Exit
-      src={clear}
-      alt="clear"
-      onClick={closeEditor}
-      isEditorOpen={isEditorOpen}
-    />
-    <EditorContainer isEditorOpen={isEditorOpen} />
+    <EditorContainer isEditorOpen={isEditorOpen} closeEditor={closeEditor} />
   </div>
 )
 
